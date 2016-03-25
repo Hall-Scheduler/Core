@@ -1,2 +1,2 @@
 # Server
-ASP.NET Web API 2.0
+HTTP Server for the Hall Scheduler built on ASP.NET Web API V2.0
