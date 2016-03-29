@@ -9,27 +9,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{89A32729-1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{DFCED5F3-2686-4A0B-83CA-ABF1F1A9612F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Server.API", "Server\CompanySystem.Server.API\CompanySystem.Server.API.csproj", "{FFB135B0-5F87-4CB9-B93A-E7B7AF0BD29D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Server.API", "Server\HallScheduler.Server.API\HallScheduler.Server.API.csproj", "{FFB135B0-5F87-4CB9-B93A-E7B7AF0BD29D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Server.DataTransferModels", "Server\CompanySystem.Server.DataTransferModels\CompanySystem.Server.DataTransferModels.csproj", "{8B223247-FF6F-4824-A088-20E314CCA7E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Server.DataTransferModels", "Server\HallScheduler.Server.DataTransferModels\HallScheduler.Server.DataTransferModels.csproj", "{8B223247-FF6F-4824-A088-20E314CCA7E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Server.Infrastructure", "Server\CompanySystem.Server.Infrastructure\CompanySystem.Server.Infrastructure.csproj", "{51AD2630-144F-4A30-9BC7-8E9B03A578B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Server.Infrastructure", "Server\HallScheduler.Server.Infrastructure\HallScheduler.Server.Infrastructure.csproj", "{51AD2630-144F-4A30-9BC7-8E9B03A578B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Server.Common", "Server\CompanySystem.Server.Common\CompanySystem.Server.Common.csproj", "{3D6FA814-DCAF-4629-AD0B-F786330A1F18}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Server.Common", "Server\HallScheduler.Server.Common\HallScheduler.Server.Common.csproj", "{3D6FA814-DCAF-4629-AD0B-F786330A1F18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Data", "Data\CompanySystem.Data\CompanySystem.Data.csproj", "{B907B006-A3F0-424C-A6A7-77FC67A7B22E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Data", "Data\HallScheduler.Data\HallScheduler.Data.csproj", "{B907B006-A3F0-424C-A6A7-77FC67A7B22E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Data.Models", "Data\CompanySystem.Data.Models\CompanySystem.Data.Models.csproj", "{3A0ACC93-7F52-4CFC-B796-EFAEA960875B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Data.Models", "Data\HallScheduler.Data.Models\HallScheduler.Data.Models.csproj", "{3A0ACC93-7F52-4CFC-B796-EFAEA960875B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Data.Common", "Data\CompanySystem.Data.Common\CompanySystem.Data.Common.csproj", "{A3517B2F-0F8F-4731-80AF-1645A135033B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Data.Common", "Data\HallScheduler.Data.Common\HallScheduler.Data.Common.csproj", "{A3517B2F-0F8F-4731-80AF-1645A135033B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Services.Data", "Services\CompanySystem.Services.Data\CompanySystem.Services.Data.csproj", "{62A695C6-2F8A-4347-8009-ABB0D679B912}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Services.Data", "Services\HallScheduler.Services.Data\HallScheduler.Services.Data.csproj", "{62A695C6-2F8A-4347-8009-ABB0D679B912}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Services.Common", "Services\CompanySystem.Services.Common\CompanySystem.Services.Common.csproj", "{690B2741-FBBD-454F-A398-4720FA1422FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Services.Common", "Services\HallScheduler.Services.Common\HallScheduler.Services.Common.csproj", "{690B2741-FBBD-454F-A398-4720FA1422FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{7293052D-7ECE-42A0-B2BE-5AD65755B176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanySystem.Common.Constants", "Common\CompanySystem.Common.Constants\CompanySystem.Common.Constants.csproj", "{EA5DB80F-BF9D-4565-8535-05E50C17FA11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Common.Constants", "Common\HallScheduler.Common.Constants\HallScheduler.Common.Constants.csproj", "{EA5DB80F-BF9D-4565-8535-05E50C17FA11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
