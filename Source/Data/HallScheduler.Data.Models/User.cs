@@ -9,7 +9,6 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Common.Constants;
-    using System.Linq;
     using Common.Enumerations;
 
     public class User : IdentityUser
@@ -25,8 +24,12 @@
         public string LastName { get; set; }
 
         [Required]
-        [EnumDataType(typeof(AcademicRank), ErrorMessage = ValidationConstants.AcademicRankErrorMessage)]
-        public AcademicRank AcademicRank{ get; set; }
+        [EnumDataType(typeof(AcademicRankType), ErrorMessage = ValidationConstants.AcademicRankTypeErrorMessage)]
+        public AcademicRankType AcademicRank{ get; set; }
+
+        [Required]
+        [EnumDataType(typeof(FacultyType), ErrorMessage = ValidationConstants.FacultyTypeErrorMessage)]
+        public FacultyType Faculty { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {

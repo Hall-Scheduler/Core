@@ -21,7 +21,9 @@
         public const int EmailMinLength = 3;
         public const string EmailMinLengthErrorMessage = "Email min length cannot be less than 3 characters.";
 
-        public const string AcademicRankErrorMessage = "AcademicRank must be an enum of type \"AcademicRank\"";
+        public const string AcademicRankTypeErrorMessage = "AcademicRank must be an enum of type \"AcademicRank\"";
+        public const string FacultyTypeErrorMessage = "Faculty must be an enum of type \"FacultyType\"";
+
         // City
         public const int CityNameMaxLength = 100;
         public const int CityNameMinLength = 2;

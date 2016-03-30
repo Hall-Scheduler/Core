@@ -20,6 +20,6 @@
 
         public string Cabinet { get; set; }
 
-        public AcademicRank AcademicRank { get; set; }
+        public AcademicRankType AcademicRank { get; set; }
     }
 }

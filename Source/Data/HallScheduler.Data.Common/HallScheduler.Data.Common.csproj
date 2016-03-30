@@ -50,7 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\ValidationConstants.cs" />
-    <Compile Include="Enumerations\AcademicRank.cs" />
+    <Compile Include="Enumerations\AcademicRankType.cs" />
+    <Compile Include="Enumerations\FacultyType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

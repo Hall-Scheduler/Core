@@ -1,6 +1,6 @@
 ﻿namespace HallScheduler.Data.Common.Enumerations
 {
-    public enum AcademicRank
+    public enum AcademicRankType
     {
         Rector = 1,
         ViceRector = 2,

@@ -51,7 +51,7 @@
         [Required]
         [StringLength(36, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 3)]
         [Display(Name = "Username")]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Required]
         [MaxLength(ValidationConstants.FirstNameMaxLength, ErrorMessage = ValidationConstants.FirstNameMaxLengthErrorMessage)]
@@ -64,8 +64,8 @@
         public string LastName { get; set; }
 
         [Required]
-        [EnumDataType(typeof(AcademicRank), ErrorMessage = ValidationConstants.AcademicRankErrorMessage)]
-        public AcademicRank AcademicRank { get; set; }
+        [EnumDataType(typeof(AcademicRankType), ErrorMessage = ValidationConstants.AcademicRankTypeErrorMessage)]
+        public AcademicRankType AcademicRank { get; set; }
     }
 
     public class RegisterExternalBindingModel

@@ -86,7 +86,7 @@
                     Password = "123123",
                     PhoneNumber = "35988888888" + (i - 1),
                     Role = Roles.Administrator,
-                    AcademicRank = AcademicRank.HeadOfDepartment
+                    AcademicRank = AcademicRankType.HeadOfDepartment
                 };
 
                 this.Users.Add(model);
@@ -104,7 +104,7 @@
                     Password = "123123",
                     PhoneNumber = "3597777777" + (i - 1),
                     Role = Roles.Moderator,
-                    AcademicRank = AcademicRank.Dean
+                    AcademicRank = AcademicRankType.Dean
                 };
 
                 this.Users.Add(model);
@@ -122,7 +122,7 @@
                     Password = "123123",
                     PhoneNumber = "35966666666" + (i - 1),
                     Role = Roles.Professor,
-                    AcademicRank = AcademicRank.Professor
+                    AcademicRank = AcademicRankType.Professor
                 };
 
                 this.Users.Add(model);
@@ -140,7 +140,7 @@
                     Password = "123123",
                     PhoneNumber = "35955555555" + (i - 1),
                     Role = null,
-                    AcademicRank = AcademicRank.RegularStudent
+                    AcademicRank = AcademicRankType.RegularStudent
                 };
 
                 this.Users.Add(model);
