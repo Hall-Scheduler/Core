@@ -1,15 +1,15 @@
 ﻿namespace HallScheduler.Data.Models
 {
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
+
     using Common.Constants;
     using Common.Enumerations;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public class User : IdentityUser
     {
@@ -38,7 +38,6 @@
         public FacultyType Faculty { get; set; }
 
         public virtual ICollection<Event> Schedule { get; set; }
-
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {
