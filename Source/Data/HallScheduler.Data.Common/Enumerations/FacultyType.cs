@@ -2,7 +2,7 @@
 {
     public enum FacultyType
     {
-        FKSU = 0,
+        FKSU = 5,
         FTK = 1,
         FA = 2,
         EF = 3,

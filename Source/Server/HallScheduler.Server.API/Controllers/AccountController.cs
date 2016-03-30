@@ -330,9 +330,9 @@
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return this.BadRequest(this.ModelState);
             }
 
             var user = new User()
@@ -341,17 +341,18 @@
                 Email = model.Email,
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                AcademicRank = model.AcademicRank
+                AcademicRank = model.AcademicRank,
+                Faculty = model.Faculty
             };
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await this.UserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                return this.GetErrorResult(result);
             }
 
-            return this.Ok(new ResponseResultObject(true, "", new { Result = "Account successfully created!", Username = user.UserName}));
+            return this.Ok(new ResponseResultObject(true, "Account successfully created!", new { UserName = user.UserName }));
         }
 
         // POST api/Account/RegisterExternal

@@ -66,6 +66,10 @@
         [Required]
         [EnumDataType(typeof(AcademicRankType), ErrorMessage = ValidationConstants.AcademicRankTypeErrorMessage)]
         public AcademicRankType AcademicRank { get; set; }
+
+        [Required]
+        [EnumDataType(typeof(FacultyType), ErrorMessage = ValidationConstants.FacultyTypeErrorMessage)]
+        public FacultyType Faculty { get; set; }
     }
 
     public class RegisterExternalBindingModel
