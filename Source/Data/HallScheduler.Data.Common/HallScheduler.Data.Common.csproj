@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\NavigationPropertiesConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Enumerations\AcademicRankType.cs" />
     <Compile Include="Enumerations\BlockType.cs" />
