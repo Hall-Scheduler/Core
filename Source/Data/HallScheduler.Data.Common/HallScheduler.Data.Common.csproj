@@ -51,7 +51,10 @@
   <ItemGroup>
     <Compile Include="Constants\ValidationConstants.cs" />
     <Compile Include="Enumerations\AcademicRankType.cs" />
+    <Compile Include="Enumerations\BlockType.cs" />
     <Compile Include="Enumerations\FacultyType.cs" />
+    <Compile Include="Enumerations\HallType.cs" />
+    <Compile Include="Enumerations\StageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

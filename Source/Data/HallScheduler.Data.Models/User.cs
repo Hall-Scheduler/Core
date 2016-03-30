@@ -13,6 +13,12 @@
 
     public class User : IdentityUser
     {
+        public User()
+            : base()
+        {
+            this.Schedule = new HashSet<Event>();
+        }
+
         [Required]
         [MaxLength(ValidationConstants.FirstNameMaxLength, ErrorMessage = ValidationConstants.FirstNameMaxLengthErrorMessage)]
         [MinLength(ValidationConstants.FirstNameMinLength, ErrorMessage = ValidationConstants.FirstNameMinLengthErrorMessage)]
@@ -25,11 +31,14 @@
 
         [Required]
         [EnumDataType(typeof(AcademicRankType), ErrorMessage = ValidationConstants.AcademicRankTypeErrorMessage)]
-        public AcademicRankType AcademicRank{ get; set; }
+        public AcademicRankType AcademicRank { get; set; }
 
         [Required]
         [EnumDataType(typeof(FacultyType), ErrorMessage = ValidationConstants.FacultyTypeErrorMessage)]
         public FacultyType Faculty { get; set; }
+
+        public virtual ICollection<Event> Schedule { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {

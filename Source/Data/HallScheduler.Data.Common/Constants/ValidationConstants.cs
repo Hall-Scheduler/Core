@@ -24,16 +24,22 @@
         public const string AcademicRankTypeErrorMessage = "AcademicRank must be an enum of type \"AcademicRank\"";
         public const string FacultyTypeErrorMessage = "Faculty must be an enum of type \"FacultyType\"";
 
-        // City
-        public const int CityNameMaxLength = 100;
-        public const int CityNameMinLength = 2;
-        public const string CityNameMaxLengthErrorMessage = "City name max length cannot exceed 100 characters.";
-        public const string CityNameMinLengthErrorMessage = "City name min length cannot be less than 2 characters.";
+        // Event
+        public const string EventStartingHourRegex = "[0-9]{2}:[0-9]{2}";
+        public const string EventStartingHourErrorMessage = "EventStartingHour must be in the following format - \"HH:MM\"";
+        public const string EventDayOfWeekErrorMessage = "EventDayOfWeek must be an enum of type \"DayOfWeek\"";
+        public const string EventDurationErrorMessage = "EventDurationInMinutes must be a number between 0 and 1440 inclusive";
 
-        // Country
-        public const int CountryNameMaxLength = 150;
-        public const int CountryNameMinLength = 2;
-        public const string CountryNameMaxLengthErrorMessage = "Country name max length cannot exceed 150 characters.";
-        public const string CountryNameMinLengthErrorMessage = "Country name min length cannot be less than 2 characters.";
+        public const int EventDurationMinLength = 0;
+        public const int EventDurationMaxLength = 1440;
+
+        // Hall
+        public const int HallRoomMinValue = 0;
+        public const int HallRoomMaxValue = 0;
+
+        public const string HallRoomValueErrorMessage = "HallRoom must be a number between 0 and 300 inclusive";
+        public const string HallTypeErrorMessage = "HallType must be an enum of type \"HallType\"";
+        public const string HallBlockTypeErrorMessage = "HallBlockType must be an enum of type \"BlockType\"";
+        public const string HallStageTypeErrorMessage = "HallStageType must be an enum of type \"StageType\"";
     }
 }
