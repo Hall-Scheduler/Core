@@ -35,7 +35,7 @@
 
         // Hall
         public const int HallRoomMinValue = 0;
-        public const int HallRoomMaxValue = 0;
+        public const int HallRoomMaxValue = 300;
 
         public const string HallRoomValueErrorMessage = "HallRoom must be a number between 0 and 300 inclusive";
         public const string HallTypeErrorMessage = "HallType must be an enum of type \"HallType\"";

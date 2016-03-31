@@ -4,15 +4,14 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Common.Enumerations;
     using Contexts;
-    using Common.Constants;
+    using HallScheduler.Common.Constants;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using SeedModels;
 
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using Microsoft.AspNet.Identity;
-    using Models;
-    using HallScheduler.Common.Constants;
-    using Common.Enumerations;
     public class UsersSeeder : ISeeder
     {
         public List<UserSeedModel> Users { get; set; } = new List<UserSeedModel>();

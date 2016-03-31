@@ -1,10 +1,11 @@
 ﻿namespace HallScheduler.Server.API
 {
+    using System.Reflection;
+    using System.Web.Http;
+
     using App_Start;
     using HallScheduler.Common.Constants;
     using Infrastructure.Mapping;
-    using System.Reflection;
-    using System.Web.Http;
 
     public class WebApiApplication : System.Web.HttpApplication
     {

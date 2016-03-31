@@ -2,16 +2,20 @@
 {
     using Contexts;
     using HallScheduler.Common.Constants;
-
-    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using System.Linq;
+
     public class RolesSeeder : ISeeder
     {
         public void Seed(HallSchedulerDbContext context)
         {
-            this.SeedRole(Roles.Administrator, context);
-            this.SeedRole(Roles.Moderator, context);
-            this.SeedRole(Roles.Professor, context);
+            if (!context.Roles.Any())
+            {
+                this.SeedRole(Roles.Administrator, context);
+                this.SeedRole(Roles.Moderator, context);
+                this.SeedRole(Roles.Professor, context);
+            }
         }
 
         private void SeedRole(string name, HallSchedulerDbContext context)

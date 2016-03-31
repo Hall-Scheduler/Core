@@ -88,6 +88,8 @@
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\IHallSchedulerDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Seed\Seeders\EventsSeeder.cs" />
+    <Compile Include="Migrations\Seed\Seeders\HallsSeeder.cs" />
     <Compile Include="Migrations\Seed\Seeders\ISeeder.cs" />
     <Compile Include="Migrations\Seed\Seeders\RolesSeeder.cs" />
     <Compile Include="Migrations\Seed\SeedFactory.cs" />
