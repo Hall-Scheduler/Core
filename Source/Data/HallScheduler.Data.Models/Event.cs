@@ -31,16 +31,22 @@
         public DayOfWeek DayOfWeek { get; set; }
 
         [Required]
-        [RegularExpression(
-            ValidationConstants.EventStartingHourRegex, 
-            ErrorMessage = ValidationConstants.EventStartingHourErrorMessage)]
-        public string StartsAt { get; set; }
+        [Range(
+            ValidationConstants.EventStartsAtMinValue, 
+            ValidationConstants.EventStartsAtMaxValue, 
+            ErrorMessage = ValidationConstants.EventStartsAtErrorMessage)]
+        public int StartsAt { get; set; }
 
         [Required]
         [Range(
             ValidationConstants.EventDurationMinLength,
             ValidationConstants.EventDurationMaxLength,
             ErrorMessage = ValidationConstants.EventDurationErrorMessage)]
-        public int DurationInMinutes { get; set; }
+        public int EndsAt { get; set; }
+
+        [Required]
+        [MinLength(ValidationConstants.EventTopicMinLength, ErrorMessage = ValidationConstants.EventTopicMinLengthErrorMessage)]
+        [MaxLength(ValidationConstants.EventTopicMaxLength, ErrorMessage = ValidationConstants.EventTopicMaxLengthErrorMessage)]
+        public string Topic { get; set; }
     }
 }
