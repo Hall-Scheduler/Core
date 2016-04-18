@@ -64,7 +64,8 @@
     <Compile Include="Account\AccountBindingModels.cs" />
     <Compile Include="Account\AccountViewModels.cs" />
     <Compile Include="Events\EventDTM.cs" />
-    <Compile Include="Halls\HallDTM.cs" />
+    <Compile Include="Halls\HallDetailedDTO.cs" />
+    <Compile Include="Halls\HallBriefDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\UserBriefDataTransferModel.cs" />
     <Compile Include="Users\UserDetailedDataTransferModel.cs" />

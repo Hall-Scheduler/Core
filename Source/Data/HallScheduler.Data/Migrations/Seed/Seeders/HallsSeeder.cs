@@ -9,6 +9,8 @@
 
     public class HallsSeeder : ISeeder
     {
+        public int Priority { get; set; } = 3;
+
         public Random Generator { get; set; } = new Random();
 
         public void Seed(HallSchedulerDbContext context)
@@ -24,21 +26,32 @@
                 var stageTypes = Enum.GetValues(typeof(StageType))
                     .Cast<StageType>()
                     .ToList();
+                var roomTypes = Enum.GetValues(typeof(RoomType))
+                    .Cast<RoomType>()
+                    .ToList();
 
-                for (int i = 1; i <= 160; i++)
+                for (int blockType = 0; blockType < blockTypes.Count - 2; blockType++)
                 {
-                    var hall = new Hall()
+                    for (int stageType = 0; stageType < stageTypes.Count - 1; stageType++)
                     {
-                        Type = hallTypes[this.Generator.Next(0, hallTypes.Count)],
-                        Block = blockTypes[this.Generator.Next(0, blockTypes.Count)],
-                        Stage = stageTypes[this.Generator.Next(0, stageTypes.Count)],
-                        Room = i
-                    };
+                        for (int roomType = 0; roomType < roomTypes.Count; roomType++)
+                        {
+                            var hallType = this.Generator.Next(0, hallTypes.Count);
 
-                    context.Halls.AddOrUpdate(hall);
+                            var hall = new Hall()
+                            {
+                                Type = hallTypes[hallType],
+                                Block = blockTypes[blockType],
+                                Stage = stageTypes[stageType],
+                                Room = roomTypes[roomType]
+                            };
+
+                            context.Halls.AddOrUpdate(hall);
+                        }
+
+                        context.SaveChanges();
+                    }
                 }
-
-                context.SaveChanges();
             }
         }
     }

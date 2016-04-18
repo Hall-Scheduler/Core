@@ -42,12 +42,9 @@
         public const int EventDurationMaxLength = 1440;
 
         // Hall
-        public const int HallRoomMinValue = 0;
-        public const int HallRoomMaxValue = 300;
-
-        public const string HallRoomValueErrorMessage = "HallRoom must be a number between 0 and 300 inclusive";
         public const string HallTypeErrorMessage = "HallType must be an enum of type \"HallType\"";
-        public const string HallBlockTypeErrorMessage = "HallBlockType must be an enum of type \"BlockType\"";
+        public const string HallRoomValueErrorMessage = "HallRoom must be an enum of type \"RoomType\"";
         public const string HallStageTypeErrorMessage = "HallStageType must be an enum of type \"StageType\"";
+        public const string HallBlockTypeErrorMessage = "HallBlockType must be an enum of type \"BlockType\"";
     }
 }

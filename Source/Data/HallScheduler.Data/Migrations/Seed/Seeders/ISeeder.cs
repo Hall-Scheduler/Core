@@ -4,6 +4,8 @@
 
     public interface ISeeder
     {
+        int Priority { get; set; }
+
         void Seed(HallSchedulerDbContext context);
     }
 }

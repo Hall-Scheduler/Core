@@ -8,6 +8,6 @@
         S4 = 4,
         S5 = 5,
         S6 = 6,
-        Basement = 0
+        Basement = 7
     }
 }

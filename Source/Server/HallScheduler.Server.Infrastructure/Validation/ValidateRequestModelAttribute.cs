@@ -15,7 +15,7 @@
         {
             if (actionContext.ActionArguments.Any(p => p.Value == null))
             {
-                actionContext.ModelState.AddModelError(string.Empty, ServerConstants.RequestCannotBeEmpty);
+                actionContext.ModelState.AddModelError(string.Empty, API.RequestCannotBeEmpty);
             }
 
             if (!actionContext.ModelState.IsValid)

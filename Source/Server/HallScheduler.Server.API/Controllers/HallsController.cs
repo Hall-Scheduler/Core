@@ -1,49 +1,64 @@
 ﻿namespace HallScheduler.Server.API.Controllers
 {
-    using Data.Common.Enumerations;
+    using AutoMapper;
+    using Common.Constants;
+    using Data.Models;
     using DataTransferModels.Halls;
-    using HallScheduler.Common.Constants;
-    using HallScheduler.Data.Contexts;
-    using HallScheduler.Server.Infrastructure;
+    using Infrastructure;
     using Infrastructure.Mapping;
-    using System;
-    using System.Collections.Generic;
+    using Services.Data.Contracts;
     using System.Data.Entity;
-    using System.Linq;
-    using System.Net;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
 
-    [RoutePrefix("api/Halls")]
-    public class HallsController : ApiController
+    [RoutePrefix(API.Halls)]
+    public class HallsController : BaseController
     {
-        [HttpGet]
-        [Route("All")]
-        public async Task<IHttpActionResult> GetAllHalls()
+        public HallsController(IHallsService halls)
         {
-            var context = new HallSchedulerDbContext();
+            this.Halls = halls;
+        }
 
-            //var result = await context.Halls.Select(x => new
-            //{
-            //    HallName = x.Block.ToString() + x.Stage.ToString() + x.Room.ToString(),
-            //    HallType = x.Type,
-            //    HallSchedule = x.Schedule.Select(z => new
-            //    {
-            //        StartsAt = z.StartsAt,
-            //        Duration = z.DurationInMinutes,
-            //        Lecturer = z.Lecturer.UserName,
-            //        Topic = z.Topic,
-            //        DayOfTheWeek = z.DayOfWeek
-            //    }).ToList()
-            //}).ToListAsync();
+        public IHallsService Halls { get; set; }
 
-            var result = await context.Halls.To<HallDTM>().ToListAsync();
+        [HttpGet]
+        [Route(API.All)]
+        public async Task<IHttpActionResult> GetAll()
+        {
+            var result = await this.Halls.All().To<HallBriefDTO>().ToListAsync();
 
-            // 450 % 60 = 30
-            // 450 / 60 = 7
+            return this.Ok(
+                new ResponseResultObject(
+                    API.Success,
+                    API.ReturnedItems(result.Count),
+                    result));
+        }
 
-            return this.Ok(new ResponseResultObject(true, $"Returned {result.Count} items", result));
+        [HttpGet]
+        [Route(API.Schedule)]
+        public IHttpActionResult GetSchedule(int hallId)
+        {
+            var hall = this.Halls.GetById(hallId);
+            var result = this.Mapper.Map<HallDetailedDTO>(hall);
+
+            return this.Ok(
+                new ResponseResultObject(
+                    API.Success,
+                    API.ReturnedItems(API.Single),
+                    result));
+        }
+
+        [HttpGet]
+        [Route(API.FullSchedule)]
+        public async Task<IHttpActionResult> GetFullSchedule()
+        {
+            var result = await this.Halls.All().To<HallDetailedDTO>().ToListAsync();
+
+            return this.Ok(
+                new ResponseResultObject(
+                    API.Success,
+                    API.ReturnedItems(result.Count),
+                    result));
         }
     }
 }

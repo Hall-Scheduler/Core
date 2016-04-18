@@ -9,6 +9,8 @@
 
     public class EventsSeeder : ISeeder
     {
+        public int Priority { get; set; } = 4;
+
         public Random Generator { get; set; } = new Random();
 
         public Event LastEvent { get; set; } = null;

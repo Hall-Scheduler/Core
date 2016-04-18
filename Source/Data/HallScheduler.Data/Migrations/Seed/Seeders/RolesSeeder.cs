@@ -8,6 +8,8 @@
 
     public class RolesSeeder : ISeeder
     {
+        public int Priority { get; set; } = 1;
+
         public void Seed(HallSchedulerDbContext context)
         {
             if (!context.Roles.Any())

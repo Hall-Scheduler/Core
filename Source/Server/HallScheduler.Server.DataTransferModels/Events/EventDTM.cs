@@ -1,31 +1,23 @@
 ﻿namespace HallScheduler.Server.DataTransferModels.Events
 {
+    using AutoMapper;
     using Data.Common.Constants;
     using Data.Models;
     using Infrastructure.Mapping;
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using AutoMapper;
 
     public class EventDTM : IMapFrom<Event>, IHaveCustomMappings
     {
-        [Key]
+        [Required]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(300)]
         public string LecturerName { get; set; }
 
         [Required]
         public string LecturerId { get; set; }
 
         [Required]
-        [MaxLength(20)]
         public string HallName { get; set; }
 
         [Required]
@@ -49,8 +41,12 @@
         public int EndsAt { get; set; }
 
         [Required]
-        [MinLength(ValidationConstants.EventTopicMinLength, ErrorMessage = ValidationConstants.EventTopicMinLengthErrorMessage)]
-        [MaxLength(ValidationConstants.EventTopicMaxLength, ErrorMessage = ValidationConstants.EventTopicMaxLengthErrorMessage)]
+        [MinLength(
+            ValidationConstants.EventTopicMinLength, 
+            ErrorMessage = ValidationConstants.EventTopicMinLengthErrorMessage)]
+        [MaxLength(
+            ValidationConstants.EventTopicMaxLength, 
+            ErrorMessage = ValidationConstants.EventTopicMaxLengthErrorMessage)]
         public string Topic { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)

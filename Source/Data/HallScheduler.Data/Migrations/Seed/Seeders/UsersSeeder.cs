@@ -14,6 +14,8 @@
 
     public class UsersSeeder : ISeeder
     {
+        public int Priority { get; set; } = 2;
+
         public List<UserSeedModel> Users { get; set; } = new List<UserSeedModel>();
 
         public void Seed(HallSchedulerDbContext context)

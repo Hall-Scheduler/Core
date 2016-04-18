@@ -29,6 +29,8 @@
             {
                 this.Seeders.Add((ISeeder)Activator.CreateInstance(seederType));
             }
+
+            this.Seeders = this.Seeders.OrderBy(x => x.Priority).ToList();
         }
     }
 }

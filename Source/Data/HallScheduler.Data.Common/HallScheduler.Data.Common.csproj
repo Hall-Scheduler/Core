@@ -55,6 +55,7 @@
     <Compile Include="Enumerations\BlockType.cs" />
     <Compile Include="Enumerations\FacultyType.cs" />
     <Compile Include="Enumerations\HallType.cs" />
+    <Compile Include="Enumerations\RoomType.cs" />
     <Compile Include="Enumerations\StageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
