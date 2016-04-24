@@ -40,26 +40,44 @@
 
                 var halls = context.Halls.ToList();
                 var users = context.Users.Where(x => x.Roles.Any(z => z.RoleId == professorRole.Id)).ToList();
-                var durationsInMinutes = new int[] { 45, 60, 120, 90, 150 };
-                var startTimes = new int[] { 450, 510, 575, 680, 815 };
+
+                TimeSpan[] start = new TimeSpan[] {
+                    new TimeSpan(7,30,0),
+                    new TimeSpan(9,30,0),
+                    new TimeSpan(11,30,0),
+                    new TimeSpan(13,45,0),
+                    new TimeSpan(15,45,0),
+                    new TimeSpan(17,45,0),
+                };
+
+                TimeSpan[] end = new TimeSpan[] {
+                    new TimeSpan(9,15,0),
+                    new TimeSpan(11,15,0),
+                    new TimeSpan(13,15,0),
+                    new TimeSpan(15,30,0),
+                    new TimeSpan(17,30,0),
+                    new TimeSpan(19,30,0),
+                };
+
                 var daysOfTheWeek = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
 
-                for (int i = 1; i <= 50; i++)
+                for (int i = 1; i <= 100; i++)
                 {
                     var hall = halls[i];
 
-                    for (int j = 0; j < startTimes.Length; j++)
+                    for (int j = 0; j < start.Length; j++)
                     {
                         var lecturer = users[this.Generator.Next(0, users.Count)];
                         var dayOfWeek = daysOfTheWeek[this.Generator.Next(0, daysOfTheWeek.Count)];
+                        var topic = eventTopics[this.Generator.Next(0, eventTopics.Length)];
 
                         var hallEvent = new Event()
                         {
                             LecturerId = lecturer.Id,
                             DayOfWeek = dayOfWeek,
                             HallId = hall.Id,
-                            StartsAt = startTimes[j],
-                            EndsAt = startTimes[j] + durationsInMinutes[j],
+                            StartsAt = start[j],
+                            EndsAt = end[j],
                             Topic = eventTopics[this.Generator.Next(0, eventTopics.Length)]
                         };
 

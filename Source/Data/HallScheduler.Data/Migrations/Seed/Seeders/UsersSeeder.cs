@@ -54,7 +54,8 @@
                     PhoneNumber = model.PhoneNumber,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    AcademicRank = model.AcademicRank
+                    AcademicRank = model.AcademicRank,
+                    Faculty = model.Faculty
                 };
 
                 IdentityResult result = userManager.Create(user, model.Password);
@@ -75,6 +76,12 @@
 
         public void InitializeUserSeedModels()
         {
+            var randomGenerator = new Random();
+
+            var faculties = Enum.GetValues(typeof(FacultyType))
+                .Cast<FacultyType>()
+                .ToList();
+
             // Administrators
             for (int i = 1; i <= 10; i++)
             {
@@ -87,7 +94,8 @@
                     Password = "123123",
                     PhoneNumber = "35988888888" + (i - 1),
                     Role = Roles.Administrator,
-                    AcademicRank = AcademicRankType.HeadOfDepartment
+                    AcademicRank = AcademicRankType.HeadOfDepartment,
+                    Faculty = faculties[randomGenerator.Next(0, faculties.Count)]
                 };
 
                 this.Users.Add(model);
@@ -105,7 +113,8 @@
                     Password = "123123",
                     PhoneNumber = "3597777777" + (i - 1),
                     Role = Roles.Moderator,
-                    AcademicRank = AcademicRankType.Dean
+                    AcademicRank = AcademicRankType.Dean,
+                    Faculty = faculties[randomGenerator.Next(0, faculties.Count)]
                 };
 
                 this.Users.Add(model);
@@ -123,7 +132,8 @@
                     Password = "123123",
                     PhoneNumber = "35966666666" + (i - 1),
                     Role = Roles.Professor,
-                    AcademicRank = AcademicRankType.Professor
+                    AcademicRank = AcademicRankType.Professor,
+                    Faculty = faculties[randomGenerator.Next(0, faculties.Count)]
                 };
 
                 this.Users.Add(model);
@@ -141,7 +151,8 @@
                     Password = "123123",
                     PhoneNumber = "35955555555" + (i - 1),
                     Role = null,
-                    AcademicRank = AcademicRankType.RegularStudent
+                    AcademicRank = AcademicRankType.RegularStudent,
+                    Faculty = faculties[randomGenerator.Next(0, faculties.Count)]
                 };
 
                 this.Users.Add(model);

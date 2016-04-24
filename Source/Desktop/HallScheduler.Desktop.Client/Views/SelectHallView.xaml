@@ -1,0 +1,40 @@
+﻿<Window x:Class="HallScheduler.Desktop.Client.Views.SelectHallView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HallScheduler.Desktop.Client.Views"
+        xmlns:autocomplete="clr-namespace:FeserWard.Controls;assembly=Intellibox"
+        mc:Ignorable="d"
+        Title="SelectHallView" Height="300" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Search" FontFamily="Segoe UI" FontSize="24" FontStretch="SemiExpanded"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <autocomplete:Intellibox 
+            Grid.Row="1" Grid.RowSpan="1" 
+            Grid.Column="0" Grid.ColumnSpan="1"
+            Name="autocompleteTextBox" SelectAllOnFocus="True" 
+            HorizontalAlignment="Center" VerticalAlignment="Top"
+            DataProvider="{Binding QueryProvider}"
+            DisplayedValueBinding="{Binding SelectedValue, Mode = OneWay}"
+            SelectedItem="{Binding SelectedItem}"
+            SelectedValue="{Binding SelectedValue}"
+            Height="30" Width="200" 
+            ResultsHeight="150" ResultsWidth="200"
+            ExplicitlyIncludeColumns="True">
+            <autocomplete:Intellibox.Columns>
+                <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Type}" Header="Type" />
+                <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Block}" Header="Block" />
+                <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Stage}" Header="Stage" />
+                <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Room}" Header="Room" />
+            </autocomplete:Intellibox.Columns>
+        </autocomplete:Intellibox>
+    </Grid>
+</Window>

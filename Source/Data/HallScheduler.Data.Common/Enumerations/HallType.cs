@@ -4,6 +4,7 @@
     {
         Lecture = 1,
         Hybrid = 2,
-        Laboratory = 3
+        Laboratory = 3,
+        Cabinet = 4
     }
 }

@@ -22,6 +22,14 @@
         [Required]
         public string Room { get; set; }
 
+        public string Name
+        {
+            get
+            {
+                return $"{this.Block}{this.Stage}{this.Room}";
+            }
+        }
+
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Hall, HallBriefDTO>()

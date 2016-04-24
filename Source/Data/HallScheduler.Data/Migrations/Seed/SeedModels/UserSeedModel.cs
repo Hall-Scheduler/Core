@@ -21,5 +21,7 @@
         public string Cabinet { get; set; }
 
         public AcademicRankType AcademicRank { get; set; }
+
+        public FacultyType Faculty { get; set; }
     }
 }
