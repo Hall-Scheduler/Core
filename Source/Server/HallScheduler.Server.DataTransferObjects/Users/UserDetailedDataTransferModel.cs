@@ -1,4 +1,4 @@
-﻿namespace HallScheduler.Server.DataTransferModels.Users
+﻿namespace HallScheduler.Server.DataTransferObjects.Users
 {
     using System.ComponentModel.DataAnnotations;
 

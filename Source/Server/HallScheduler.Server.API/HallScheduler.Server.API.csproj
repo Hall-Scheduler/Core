@@ -288,9 +288,9 @@
       <Project>{3d6fa814-dcaf-4629-ad0b-f786330a1f18}</Project>
       <Name>HallScheduler.Server.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\HallScheduler.Server.DataTransferModels\HallScheduler.Server.DataTransferModels.csproj">
+    <ProjectReference Include="..\HallScheduler.Server.DataTransferObjects\HallScheduler.Server.DataTransferObjects.csproj">
       <Project>{8b223247-ff6f-4824-a088-20e314cca7e6}</Project>
-      <Name>HallScheduler.Server.DataTransferModels</Name>
+      <Name>HallScheduler.Server.DataTransferObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\HallScheduler.Server.Infrastructure\HallScheduler.Server.Infrastructure.csproj">
       <Project>{51ad2630-144f-4a30-9bc7-8e9b03a578b8}</Project>

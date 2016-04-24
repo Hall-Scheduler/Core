@@ -16,7 +16,6 @@
         public const string Schedule = "Schedule";
         public const string FullSchedule = "FullSchedule";
 
-
         public static string ReturnedItems(int count)
         {
             if (count == 1)

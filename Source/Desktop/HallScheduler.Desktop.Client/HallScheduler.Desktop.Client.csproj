@@ -103,9 +103,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Server\HallScheduler.Server.DataTransferModels\HallScheduler.Server.DataTransferModels.csproj">
+    <ProjectReference Include="..\..\Server\HallScheduler.Server.DataTransferObjects\HallScheduler.Server.DataTransferObjects.csproj">
       <Project>{8B223247-FF6F-4824-A088-20E314CCA7E6}</Project>
-      <Name>HallScheduler.Server.DataTransferModels</Name>
+      <Name>HallScheduler.Server.DataTransferObjects</Name>
     </ProjectReference>
     <ProjectReference Include="..\HallScheduler.Desktop.Models\HallScheduler.Desktop.Models.csproj">
       <Project>{F275B04F-589D-4018-ADC2-444E4109FF80}</Project>

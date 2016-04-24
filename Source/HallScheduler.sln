@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{DF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Server.API", "Server\HallScheduler.Server.API\HallScheduler.Server.API.csproj", "{FFB135B0-5F87-4CB9-B93A-E7B7AF0BD29D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Server.DataTransferModels", "Server\HallScheduler.Server.DataTransferModels\HallScheduler.Server.DataTransferModels.csproj", "{8B223247-FF6F-4824-A088-20E314CCA7E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Server.DataTransferObjects", "Server\HallScheduler.Server.DataTransferObjects\HallScheduler.Server.DataTransferObjects.csproj", "{8B223247-FF6F-4824-A088-20E314CCA7E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Server.Infrastructure", "Server\HallScheduler.Server.Infrastructure\HallScheduler.Server.Infrastructure.csproj", "{51AD2630-144F-4A30-9BC7-8E9B03A578B8}"
 EndProject

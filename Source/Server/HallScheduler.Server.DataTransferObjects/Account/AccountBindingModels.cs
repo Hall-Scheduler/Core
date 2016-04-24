@@ -1,4 +1,4 @@
-﻿namespace HallScheduler.Server.DataTransferModels.Account
+﻿namespace HallScheduler.Server.DataTransferObjects.Account
 {
     using System.ComponentModel.DataAnnotations;
     using Newtonsoft.Json;

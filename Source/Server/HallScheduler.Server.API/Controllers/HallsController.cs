@@ -1,9 +1,7 @@
 ﻿namespace HallScheduler.Server.API.Controllers
 {
-    using AutoMapper;
     using Common.Constants;
-    using Data.Models;
-    using DataTransferModels.Halls;
+    using DataTransferObjects.Halls;
     using Infrastructure;
     using Infrastructure.Mapping;
     using Services.Data.Contracts;

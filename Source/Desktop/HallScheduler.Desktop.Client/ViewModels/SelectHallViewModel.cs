@@ -1,7 +1,7 @@
 ﻿namespace HallScheduler.Desktop.Client.ViewModels
 {
     using Helpers;
-    using Server.DataTransferModels.Halls;
+    using Server.DataTransferObjects.Halls;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
@@ -57,6 +57,20 @@
             {
                 this.selectedValue = this.SelectedItem?.Name;
                 this.NotifyPropertyChanged();
+            }
+        }
+
+        public List<string> TabItems
+        {
+            get
+            {
+                return new List<String>()
+                {
+                    "Monday",
+                    "Tuesday",
+                    "Friday",
+                    "Wednesday"
+                };
             }
         }
 

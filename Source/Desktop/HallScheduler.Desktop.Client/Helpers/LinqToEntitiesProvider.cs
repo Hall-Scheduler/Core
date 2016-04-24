@@ -9,7 +9,7 @@
     using FeserWard.Controls;
     using Services;
     using Models;
-    using Server.DataTransferModels.Halls;
+    using Server.DataTransferObjects.Halls;
 
     public class LinqToEntitiesProvider : IIntelliboxResultsProvider
     {

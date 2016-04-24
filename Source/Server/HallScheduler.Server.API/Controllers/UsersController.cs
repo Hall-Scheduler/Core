@@ -1,7 +1,7 @@
 ﻿namespace HallScheduler.Server.API.Controllers
 {
     using Data.Contexts;
-    using DataTransferModels.Users;
+    using DataTransferObjects.Users;
     using HallScheduler.Common.Constants;
     using Infrastructure;
     using Infrastructure.Mapping;

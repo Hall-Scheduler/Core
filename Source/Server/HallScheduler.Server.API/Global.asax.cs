@@ -14,7 +14,7 @@
             DatabaseConfig.Initialize();
 
             var autoMapperConfig = new AutoMapperConfig();
-            var models = Assembly.Load(Assemblies.ServerDataTransferModels);
+            var models = Assembly.Load(Assemblies.ServerDataTransferObjects);
             autoMapperConfig.Execute(models);
 
             GlobalConfiguration.Configure(WebApiConfig.Register);

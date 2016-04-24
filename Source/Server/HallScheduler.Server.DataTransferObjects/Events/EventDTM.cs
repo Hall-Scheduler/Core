@@ -1,4 +1,4 @@
-﻿namespace HallScheduler.Server.DataTransferModels.Events
+﻿namespace HallScheduler.Server.DataTransferObjects.Events
 {
     using AutoMapper;
     using Data.Common.Constants;

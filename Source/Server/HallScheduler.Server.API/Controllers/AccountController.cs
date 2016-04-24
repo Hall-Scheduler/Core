@@ -17,7 +17,7 @@
     using Microsoft.Owin.Security.OAuth;
     using Providers;
     using Results;
-    using DataTransferModels.Account;
+    using DataTransferObjects.Account;
     using System.Web.Http.Cors;
     using Services.Data.Contracts;
     using Services.Common.Constants;

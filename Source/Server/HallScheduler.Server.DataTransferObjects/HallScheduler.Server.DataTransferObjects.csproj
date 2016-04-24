@@ -7,8 +7,8 @@
     <ProjectGuid>{8B223247-FF6F-4824-A088-20E314CCA7E6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HallScheduler.Server.DataTransferModels</RootNamespace>
-    <AssemblyName>HallScheduler.Server.DataTransferModels</AssemblyName>
+    <RootNamespace>HallScheduler.Server.DataTransferObjects</RootNamespace>
+    <AssemblyName>HallScheduler.Server.DataTransferObjects</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
