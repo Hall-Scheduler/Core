@@ -1,5 +1,6 @@
 ﻿namespace HallScheduler.Data.Migrations.Seed.Seeders
 {
+    using Common.Enumerations;
     using Contexts;
     using HallScheduler.Common.Constants;
     using Models;
@@ -12,12 +13,6 @@
         public int Priority { get; set; } = 4;
 
         public Random Generator { get; set; } = new Random();
-
-        public Event LastEvent { get; set; } = null;
-
-        public int CurrentStartTime { get; set; } = 440;
-
-        public int PreviousDuration { get; set; }
 
         public void Seed(HallSchedulerDbContext context)
         {
@@ -38,7 +33,7 @@
                     "Concurrent and parallel programming with C#"
                 };
 
-                var halls = context.Halls.ToList();
+                var halls = context.Halls.Where(x => x.Type != HallType.Cabinet).ToList();
                 var users = context.Users.Where(x => x.Roles.Any(z => z.RoleId == professorRole.Id)).ToList();
 
                 TimeSpan[] start = new TimeSpan[] {
