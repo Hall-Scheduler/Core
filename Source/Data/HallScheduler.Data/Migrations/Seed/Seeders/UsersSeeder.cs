@@ -77,6 +77,30 @@
         public void InitializeUserSeedModels()
         {
             var randomGenerator = new Random();
+            var firstNames = new string[]
+            {
+                "Ivan",
+                "Mariyan",
+                "Peter",
+                "Dinko",
+                "Georgi",
+                "Nikolay",
+                "Ivaylo",
+                "Simeon",
+                "Stiliyan"
+            };
+            var lastNames = new string[]
+            {
+                "Kolev",
+                "Simeonov",
+                "Georgiev",
+                "Stoyanov",
+                "Iliev",
+                "Martinov",
+                "Dimitrov",
+                "Ivanov",
+                "Bogdanov"
+            };
 
             var faculties = Enum.GetValues(typeof(FacultyType))
                 .Cast<FacultyType>()
@@ -87,8 +111,8 @@
             {
                 var model = new UserSeedModel()
                 {
-                    FirstName = "FirstName " + i,
-                    LastName = "LastName " + i,
+                    FirstName = firstNames[randomGenerator.Next(0, firstNames.Length)],
+                    LastName = lastNames[randomGenerator.Next(0, lastNames.Length)],
                     UserName = "admin" + i + "@site.com",
                     Email = "admin" + i + "@site.com",
                     Password = "123123",
@@ -106,10 +130,10 @@
             {
                 var model = new UserSeedModel()
                 {
-                    FirstName = "FirstName " + i,
-                    LastName = "LastName " + i,
-                    UserName = "mod" + i + "@site.com",
-                    Email = "mod" + i + "@site.com",
+                    FirstName = firstNames[randomGenerator.Next(0,firstNames.Length)],
+                    LastName = lastNames[randomGenerator.Next(0, lastNames.Length)],
+                    UserName = "moderator" + i + "@site.com",
+                    Email = "moderator" + i + "@site.com",
                     Password = "123123",
                     PhoneNumber = "3597777777" + (i - 1),
                     Role = Roles.Moderator,
@@ -125,8 +149,8 @@
             {
                 var model = new UserSeedModel()
                 {
-                    FirstName = "FirstName " + i,
-                    LastName = "LastName " + i,
+                    FirstName = firstNames[randomGenerator.Next(0, firstNames.Length)],
+                    LastName = lastNames[randomGenerator.Next(0, lastNames.Length)],
                     UserName = "prof" + i + "@site.com",
                     Email = "prof" + i + "@site.com",
                     Password = "123123",
@@ -144,8 +168,8 @@
             {
                 var model = new UserSeedModel()
                 {
-                    FirstName = "FirstName " + i,
-                    LastName = "LastName " + i,
+                    FirstName = firstNames[randomGenerator.Next(0, firstNames.Length)],
+                    LastName = lastNames[randomGenerator.Next(0, lastNames.Length)],
                     UserName = "stud" + i + "@site.com",
                     Email = "stud" + i + "@site.com",
                     Password = "123123",

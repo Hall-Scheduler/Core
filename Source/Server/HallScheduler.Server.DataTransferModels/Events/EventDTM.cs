@@ -4,6 +4,7 @@
     using Data.Common.Constants;
     using Data.Models;
     using Infrastructure.Mapping;
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     public class EventDTM : IMapFrom<Event>, IHaveCustomMappings
@@ -27,18 +28,10 @@
         public string DayOfWeek { get; set; }
 
         [Required]
-        [Range(
-            ValidationConstants.EventStartsAtMinValue,
-            ValidationConstants.EventStartsAtMaxValue,
-            ErrorMessage = ValidationConstants.EventStartsAtErrorMessage)]
-        public int StartsAt { get; set; }
+        public TimeSpan StartsAt { get; set; }
 
         [Required]
-        [Range(
-            ValidationConstants.EventDurationMinLength,
-            ValidationConstants.EventDurationMaxLength,
-            ErrorMessage = ValidationConstants.EventDurationErrorMessage)]
-        public int EndsAt { get; set; }
+        public TimeSpan EndsAt { get; set; }
 
         [Required]
         [MinLength(
