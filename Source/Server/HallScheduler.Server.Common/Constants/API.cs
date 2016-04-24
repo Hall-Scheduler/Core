@@ -19,7 +19,14 @@
 
         public static string ReturnedItems(int count)
         {
-            return $"Returned {count} items";
+            if (count == 1)
+            {
+                return $"Returned {count} item";
+            }
+            else
+            {
+                return $"Returned {count} items";
+            }
         }
     }
 }
