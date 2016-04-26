@@ -43,6 +43,7 @@
                     new TimeSpan(13,45,0),
                     new TimeSpan(15,45,0),
                     new TimeSpan(17,45,0),
+                    new TimeSpan(19,45,0),
                 };
 
                 TimeSpan[] end = new TimeSpan[] {
@@ -51,7 +52,7 @@
                     new TimeSpan(13,15,0),
                     new TimeSpan(15,30,0),
                     new TimeSpan(17,30,0),
-                    new TimeSpan(19,30,0),
+                    new TimeSpan(21,30,0),
                 };
 
                 var daysOfTheWeek = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();

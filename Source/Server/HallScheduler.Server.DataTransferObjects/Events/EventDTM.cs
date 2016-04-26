@@ -6,7 +6,7 @@
     using Infrastructure.Mapping;
     using System;
     using System.ComponentModel.DataAnnotations;
-
+    using System.Runtime.Serialization;
     public class EventDTM : IMapFrom<Event>, IHaveCustomMappings
     {
         [Required]
@@ -32,6 +32,24 @@
 
         [Required]
         public TimeSpan EndsAt { get; set; }
+        
+        [IgnoreDataMember]
+        public string TimeRange
+        {
+            get
+            {
+                return $"{this.StartsAt.TotalHours:00}:{this.StartsAt.Minutes:00} - {this.EndsAt.TotalHours:00}:{this.EndsAt.Minutes:00}";
+            }
+        }
+
+        [IgnoreDataMember]
+        public bool IsSchedulingEnabled
+        {
+            get
+            {
+                return String.IsNullOrEmpty(this.Topic);
+            }
+        }
 
         [Required]
         [MinLength(

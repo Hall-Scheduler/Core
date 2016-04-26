@@ -37,6 +37,20 @@
         public IHttpActionResult GetSchedule(int hallId)
         {
             var hall = this.Halls.GetById(hallId);
+            var result = this.Mapper.Map<HallScheduleDTO>(hall);
+
+            return this.Ok(
+                new ResponseResultObject(
+                    API.Success,
+                    API.ReturnedItems(API.Single),
+                    result));
+        }
+
+        [HttpGet]
+        [Route("HallDetailsWithSchedule")]
+        public IHttpActionResult GetHallDetailsWithSchedule(int hallId)
+        {
+            var hall = this.Halls.GetById(hallId);
             var result = this.Mapper.Map<HallDetailedDTO>(hall);
 
             return this.Ok(

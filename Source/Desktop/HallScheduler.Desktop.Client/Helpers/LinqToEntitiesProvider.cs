@@ -13,12 +13,13 @@
 
     public class LinqToEntitiesProvider : IIntelliboxResultsProvider
     {
-        public LinqToEntitiesProvider()
+        public LinqToEntitiesProvider(HttpService httpService)
         {
+            this.HttpService = httpService;
             this.Initialize();
         }
 
-        public HttpService HttpService { get; set; } = new HttpService();
+        public HttpService HttpService { get; set; }
 
         public List<HallBriefDTO> Halls { get; set; }
 

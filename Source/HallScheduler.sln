@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Desktop.Servi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Desktop.Models", "Desktop\HallScheduler.Desktop.Models\HallScheduler.Desktop.Models.csproj", "{F275B04F-589D-4018-ADC2-444E4109FF80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Desktop.Infrastructure", "HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj", "{A334C5EB-4F00-43EA-8221-5134CF22374F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{F275B04F-589D-4018-ADC2-444E4109FF80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F275B04F-589D-4018-ADC2-444E4109FF80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F275B04F-589D-4018-ADC2-444E4109FF80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A334C5EB-4F00-43EA-8221-5134CF22374F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A334C5EB-4F00-43EA-8221-5134CF22374F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A334C5EB-4F00-43EA-8221-5134CF22374F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A334C5EB-4F00-43EA-8221-5134CF22374F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,5 +121,6 @@ Global
 		{FFEE1344-CFB5-409B-AD4C-337211F87509} = {9D009993-4505-4793-BFDC-B91217ED2AE1}
 		{BD08EC68-089D-4614-8506-C83121F5BBC3} = {9D009993-4505-4793-BFDC-B91217ED2AE1}
 		{F275B04F-589D-4018-ADC2-444E4109FF80} = {9D009993-4505-4793-BFDC-B91217ED2AE1}
+		{A334C5EB-4F00-43EA-8221-5134CF22374F} = {9D009993-4505-4793-BFDC-B91217ED2AE1}
 	EndGlobalSection
 EndGlobal
