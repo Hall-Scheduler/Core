@@ -39,6 +39,7 @@
             }
             catch (Exception exc)
             {
+                var error = exc.ToString();
                 this.Halls = new List<HallBriefDTO>();
             }
         }

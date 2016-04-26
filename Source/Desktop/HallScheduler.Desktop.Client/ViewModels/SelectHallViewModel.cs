@@ -1,7 +1,7 @@
 ﻿namespace HallScheduler.Desktop.Client.ViewModels
 {
-    using Infrastructure.Helpers;
     using Helpers;
+    using Infrastructure.Helpers;
     using Models;
     using Server.DataTransferObjects.Events;
     using Server.DataTransferObjects.Halls;
@@ -9,16 +9,12 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Linq;
     using System.Runtime.CompilerServices;
-    using System.Text;
-    using System.Threading.Tasks;
 
     public class SelectHallViewModel : INotifyPropertyChanged
     {
         private LinqToEntitiesProvider queryProvider;
         private HallBriefDTO selectedItem;
-        private HallDetailedDTO hallDetails;
         private List<DailySchedule> weeklySchedule;
         private string selectedValue = " ";
 
@@ -26,7 +22,7 @@
         {
             this.HttpService = new HttpService();
             this.QueryProvider = new LinqToEntitiesProvider(this.HttpService);
-            this.InitializeEmptySchedule();
+            this.ClearSchedule();
         }
 
         public LinqToEntitiesProvider QueryProvider
@@ -96,6 +92,8 @@
             // TODO: Cache current request results
             try
             {
+                this.ClearSchedule();
+
                 var url = "http://localhost:38013/api/Halls/Schedule?hallId=" + this.SelectedItem.Id;
                 var response = await this.HttpService.Get<ResponseResult<HallScheduleDTO>>(url);
 
@@ -103,7 +101,6 @@
 
                 if (responseData != null)
                 {
-                    this.InitializeEmptySchedule();
                     this.ParseSchedule(responseData);
                 }
                 else
@@ -114,6 +111,7 @@
             catch (Exception exc)
             {
                 // TODO: Notify user for HTTP request error.
+                var error = exc.ToString();
             }
         }
 
@@ -125,7 +123,7 @@
             int thursday = 3;
             int friday = 4;
 
-            // TODO: Refactor me
+            // TODO: Refactor me please
             var mondaySchedule = this.WeeklySchedule[monday];
             for (int j = 0; j < schedule.Monday.Count; j++)
             {
@@ -164,7 +162,7 @@
             this.NotifyPropertyChanged(PropertyHelpers.GetPropertyName(() => this.WeeklySchedule));
         }
 
-        public void InitializeEmptySchedule()
+        public void ClearSchedule()
         {
             this.WeeklySchedule = new List<DailySchedule>()
                 {
