@@ -1,0 +1,19 @@
+﻿<Window x:Class="HallScheduler.Desktop.Client.Views.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HallScheduler.Desktop.Client.Views"
+        mc:Ignorable="d"
+        Title="LoginView" Height="220" Width="300">
+    <Grid>
+        <StackPanel>
+            <Label Width="128" HorizontalAlignment="Center">Username</Label>
+            <TextBox Name="usernameBox" Width="120"></TextBox>
+            <Label Width="128">Password</Label>
+            <PasswordBox Name="passwordBox" Width="120"></PasswordBox>
+            <Button Click="Button_Click" Content="Sign In" Width="120" Margin="10 10 10 5"></Button>
+            <Button Name="signUpButton" Click="signUpButton_Click" Content="Sign Up" Width="120"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -96,7 +96,6 @@
 
                 var url = "http://localhost:38013/api/Halls/Schedule?hallId=" + this.SelectedItem.Id;
                 var response = await this.HttpService.Get<ResponseResult<HallScheduleDTO>>(url);
-
                 var responseData = (response as ResponseResult<HallScheduleDTO>).Data;
 
                 if (responseData != null)
@@ -105,7 +104,7 @@
                 }
                 else
                 {
-                    this.NotifyPropertyChanged(PropertyHelpers.GetPropertyName(() => this.WeeklySchedule));
+                    this.NotifyPropertyChanged(PropertyHelper.GetPropertyName(() => this.WeeklySchedule));
                 }
             }
             catch (Exception exc)
@@ -159,7 +158,7 @@
                 fridaySchedule.Schedule[position] = schedule.Friday[j];
             }
 
-            this.NotifyPropertyChanged(PropertyHelpers.GetPropertyName(() => this.WeeklySchedule));
+            this.NotifyPropertyChanged(PropertyHelper.GetPropertyName(() => this.WeeklySchedule));
         }
 
         public void ClearSchedule()

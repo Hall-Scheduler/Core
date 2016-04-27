@@ -3,7 +3,7 @@
     using System;
     using System.Linq.Expressions;
 
-    public class PropertyHelpers
+    public class PropertyHelper
     {
         // Requires object instance, but you can skip specifying T
         public static string GetPropertyName<T>(Expression<Func<T>> exp)

@@ -25,7 +25,7 @@
 
         public IEnumerable DoSearch(string searchTerm, int maxResults, object extraInfo)
         {
-            return this.Halls.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
+            return this.Halls?.Where(x => x.Name.ToLower().Contains(searchTerm.ToLower())).ToList();
         }
 
         public async void Initialize()

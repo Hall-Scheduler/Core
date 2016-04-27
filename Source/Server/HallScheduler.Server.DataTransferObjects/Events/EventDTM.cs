@@ -7,6 +7,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Runtime.Serialization;
+
     public class EventDTM : IMapFrom<Event>, IHaveCustomMappings
     {
         [Required]
@@ -47,6 +48,7 @@
         {
             get
             {
+                // Check if admin
                 return String.IsNullOrEmpty(this.Topic);
             }
         }

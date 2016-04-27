@@ -57,14 +57,27 @@
                         <ListView ItemsSource="{Binding Schedule}">
                             <ListView.View>
                                 <GridView>
-                                    <GridViewColumn Header="Time range" Width="120" DisplayMemberBinding="{Binding TimeRange}" />
+                                    
+                                    <GridView.ColumnHeaderContainerStyle>
+                                        <Style TargetType="GridViewColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+                                        </Style>
+                                    </GridView.ColumnHeaderContainerStyle>
+                                    
+                                    <GridViewColumn Header="Time range" Width="120">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock HorizontalAlignment="Center" Text="{Binding TimeRange}"></TextBlock>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                     <GridViewColumn Header="Topic" Width="220" DisplayMemberBinding="{Binding Topic}" />
                                     <GridViewColumn Header="Lecturer" Width="200" DisplayMemberBinding="{Binding LecturerName}" />
                                     <GridViewColumn Header="Options" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Content="Schedule" IsEnabled="{Binding IsSchedulingEnabled}" 
-                                                        Width="120" HorizontalAlignment="Center"></Button>
+                                                        Width="100" HorizontalAlignment="Center"></Button>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
