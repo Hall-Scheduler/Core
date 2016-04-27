@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Account\AccountBindingModels.cs" />
     <Compile Include="Account\AccountViewModels.cs" />
+    <Compile Include="Account\UserIdentity.cs" />
     <Compile Include="Events\EventDTM.cs" />
     <Compile Include="Halls\HallDetailedDTO.cs" />
     <Compile Include="Halls\HallBriefDTO.cs" />
@@ -83,6 +84,10 @@
     <ProjectReference Include="..\..\Data\HallScheduler.Data.Models\HallScheduler.Data.Models.csproj">
       <Project>{3a0acc93-7f52-4cfc-b796-efaea960875b}</Project>
       <Name>HallScheduler.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj">
+      <Project>{A334C5EB-4F00-43EA-8221-5134CF22374F}</Project>
+      <Name>HallScheduler.Desktop.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\HallScheduler.Server.Common\HallScheduler.Server.Common.csproj">
       <Project>{3d6fa814-dcaf-4629-ad0b-f786330a1f18}</Project>

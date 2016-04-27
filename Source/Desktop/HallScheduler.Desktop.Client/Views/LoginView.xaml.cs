@@ -1,5 +1,9 @@
 ﻿using HallScheduler.Desktop.Client.ViewModels;
 using HallScheduler.Desktop.Infrastructure.ExtensionMethods;
+using HallScheduler.Desktop.Infrastructure.Helpers;
+using HallScheduler.Desktop.Models;
+using HallScheduler.Desktop.Services.Contracts;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,18 +29,31 @@ namespace HallScheduler.Desktop.Client.Views
         {
             this.InitializeComponent();
             this.ViewModel = new LoginViewModel();
-            // Get username and password
-            // Save password
-            // Make readonly
-            // Dispose when no longer needed
         }
 
         public LoginViewModel ViewModel { get; set; }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var password = this.passwordBox.SecurePassword;
-            this.ViewModel.Password = password;
+            var httpService = NinjectHelper.Kernel.Get<IHttpService>();
+            var tokenUrl = "http://localhost:38013/Token";
+            var tokenData = new List<KeyValuePair<string, string>>()
+            {
+                new KeyValuePair<string, string>("grant_type", "password"),
+                new KeyValuePair<string, string>("username", this.usernameBox.Text),
+                new KeyValuePair<string, string>("password", this.passwordBox.SecurePassword.ConvertToUnsecureString())
+            };
+
+            var response = await httpService.Post<AuthTokenModel>(tokenUrl, tokenData);
+            var responseAsAuthTokenModel = (response as AuthTokenModel);
+
+            var identityService = NinjectHelper.Kernel.Get<IIdentityService>();
+            identityService.AuthToken = responseAsAuthTokenModel.Access_Token.ConvertToSecureString();
+            identityService.LoadIdentity(httpService);
+
+            var nextPage = new SelectHallView();
+            nextPage.Show();
+            this.Close();
 
             // Get Token with username and password + grant_type
             // Save it as secureString

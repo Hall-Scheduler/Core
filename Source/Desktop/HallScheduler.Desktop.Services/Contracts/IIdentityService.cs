@@ -7,7 +7,7 @@
     {
         UserIdentity UserIdentity { get; }
 
-        SecureString AuthToken { get; }
+        SecureString AuthToken { get; set; }
 
         void LoadIdentity(IHttpService httpService);
     }

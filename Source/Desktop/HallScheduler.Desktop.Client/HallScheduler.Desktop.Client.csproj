@@ -65,8 +65,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\FuncCommand.cs" />
+    <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Configuration\NinjectConfig.cs" />
-    <Compile Include="Helpers\LinqToEntitiesProvider.cs" />
+    <Compile Include="Providers\LinqToEntitiesProvider.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SelectHallViewModel.cs" />
     <Compile Include="App.xaml.cs">

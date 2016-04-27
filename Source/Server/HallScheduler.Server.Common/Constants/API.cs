@@ -16,6 +16,9 @@
         public const string Schedule = "Schedule";
         public const string FullSchedule = "FullSchedule";
 
+        // Routes (Identity controller)
+        public const string Identity = "api/Identity";
+
         public static string ReturnedItems(int count)
         {
             if (count == 1)

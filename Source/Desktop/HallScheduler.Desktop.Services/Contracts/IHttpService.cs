@@ -9,6 +9,6 @@
 
         Task<object> Get<Т>(string url, string authToken);
 
-        Task<string> Post(string url, IEnumerable<KeyValuePair<string, string>> data);
+        Task<object> Post<T>(string url, IEnumerable<KeyValuePair<string, string>> data);
     }
 }

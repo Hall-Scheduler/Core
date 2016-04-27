@@ -43,16 +43,14 @@
                     using (var content = response.Content)
                     {
                         var data = await content.ReadAsStringAsync();
-
                         var result = JsonConvert.DeserializeObject<Т>(data);
-
                         return result;
                     }
                 }
             }
         }
 
-        public async Task<string> Post(string url, IEnumerable<KeyValuePair<string, string>> data)
+        public async Task<object> Post<T>(string url, IEnumerable<KeyValuePair<string, string>> data)
         {
             var query = new FormUrlEncodedContent(data);
 
@@ -62,8 +60,8 @@
                 {
                     using (var content = response.Content)
                     {
-                        var result = await content.ReadAsStringAsync();
-
+                        var responseContent = await content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<T>(responseContent);
                         return result;
                     }
                 }
