@@ -5,13 +5,39 @@
     using System.Threading.Tasks;
 
     using Newtonsoft.Json;
+    using Contracts;
+    using System;
+    using System.Net.Http.Headers;
 
-    public class HttpService
+    public class HttpService : IHttpService
     {
         public async Task<object> Get<Т>(string url)
         {
             using (var httpClient = new HttpClient())
             {
+                using (var response = await httpClient.GetAsync(url))
+                {
+                    using (var content = response.Content)
+                    {
+                        var data = await content.ReadAsStringAsync();
+
+                        var result = JsonConvert.DeserializeObject<Т>(data);
+
+                        return result;
+                    }
+                }
+            }
+        }
+
+        public async Task<object> Get<Т>(string url, string authToken)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                if (!String.IsNullOrEmpty(authToken))
+                {
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
+                }
+
                 using (var response = await httpClient.GetAsync(url))
                 {
                     using (var content = response.Content)

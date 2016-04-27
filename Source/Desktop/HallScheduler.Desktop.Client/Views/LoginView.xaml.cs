@@ -37,6 +37,13 @@ namespace HallScheduler.Desktop.Client.Views
         {
             var password = this.passwordBox.SecurePassword;
             this.ViewModel.Password = password;
+
+            // Get Token with username and password + grant_type
+            // Save it as secureString
+            // Get IdentityService
+            // Save the token to the identityService
+            // LoadFullIdentity data with IdentityService
+            // Proceed to the next page
         }
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)

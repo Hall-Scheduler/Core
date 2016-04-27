@@ -1,6 +1,6 @@
 ﻿namespace HallScheduler.Desktop.Client.ViewModels
 {
-    using Helpers;
+    using Providers;
     using Infrastructure.Helpers;
     using Models;
     using Server.DataTransferObjects.Events;

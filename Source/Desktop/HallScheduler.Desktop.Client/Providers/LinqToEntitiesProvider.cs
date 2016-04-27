@@ -1,21 +1,22 @@
-﻿namespace HallScheduler.Desktop.Client.Helpers
+﻿namespace HallScheduler.Desktop.Client.Providers
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Collections;
+
     using FeserWard.Controls;
-    using Services;
     using Models;
     using Server.DataTransferObjects.Halls;
+    using Services;
 
     public class LinqToEntitiesProvider : IIntelliboxResultsProvider
     {
         public LinqToEntitiesProvider(HttpService httpService)
         {
             this.HttpService = httpService;
+
+            // TODO: Rethink the initialization logic
             this.Initialize();
         }
 
@@ -30,10 +31,9 @@
 
         public async void Initialize()
         {
-            var url = "http://localhost:38013/api/Halls/All";
-
             try
             {
+                var url = "http://localhost:38013/api/Halls/All";
                 var response = await this.HttpService.Get<ResponseResult<List<HallBriefDTO>>>(url);
                 this.Halls = (response as ResponseResult<List<HallBriefDTO>>).Data;
             }

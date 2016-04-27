@@ -1,6 +1,6 @@
 ﻿namespace HallScheduler.Desktop.Client.Views
 {
-    using Helpers;
+    using Providers;
     using System;
     using System.Collections.Generic;
     using System.Linq;
