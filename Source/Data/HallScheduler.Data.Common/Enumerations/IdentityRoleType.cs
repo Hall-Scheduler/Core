@@ -2,7 +2,7 @@
 {
     public enum IdentityRoleType
     {
-        Admin = 1,
+        Administrator = 1,
         Moderator = 2,
         Professor = 3
     }

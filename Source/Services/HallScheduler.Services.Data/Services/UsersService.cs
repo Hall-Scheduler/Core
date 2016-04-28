@@ -11,16 +11,21 @@
 
     public class UsersService : IUsersService
     {
-        private IRepository<User> users;
-
         public UsersService(IRepository<User> users)
         {
             this.users = users;
         }
 
+        private IRepository<User> users;
+
         public IQueryable<User> All()
         {
             return this.users.All();
+        }
+
+        public User GetById(string userId)
+        {
+            return this.users.GetById(userId);
         }
     }
 }

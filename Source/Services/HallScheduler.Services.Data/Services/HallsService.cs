@@ -12,7 +12,7 @@
             this.Halls = halls;
         }
 
-        public IRepository<Hall> Halls { get; set; }
+        private IRepository<Hall> Halls { get; set; }
 
         public IQueryable<Hall> All()
         {
