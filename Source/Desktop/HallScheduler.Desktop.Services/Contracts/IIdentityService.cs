@@ -2,6 +2,7 @@
 {
     using Server.DataTransferObjects.Account;
     using System.Security;
+    using System.Threading.Tasks;
 
     public interface IIdentityService
     {
@@ -9,6 +10,6 @@
 
         SecureString AuthToken { get; set; }
 
-        void LoadIdentity(IHttpService httpService);
+        Task<bool> LoadIdentity(IHttpService httpService);
     }
 }

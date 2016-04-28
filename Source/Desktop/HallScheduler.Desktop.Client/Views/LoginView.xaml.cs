@@ -33,8 +33,10 @@ namespace HallScheduler.Desktop.Client.Views
 
         public LoginViewModel ViewModel { get; set; }
 
+        // Extract to view model
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            // Try login user
             var httpService = NinjectHelper.Kernel.Get<IHttpService>();
             var tokenUrl = "http://localhost:38013/Token";
             var tokenData = new List<KeyValuePair<string, string>>()
@@ -43,24 +45,29 @@ namespace HallScheduler.Desktop.Client.Views
                 new KeyValuePair<string, string>("username", this.usernameBox.Text),
                 new KeyValuePair<string, string>("password", this.passwordBox.SecurePassword.ConvertToUnsecureString())
             };
-
             var response = await httpService.Post<AuthTokenModel>(tokenUrl, tokenData);
             var responseAsAuthTokenModel = (response as AuthTokenModel);
+            if(responseAsAuthTokenModel == null)
+            {
+                // Notify for login error and ask the user to check his credentials or register in the system
 
+                return;
+            }
+
+            // Try load identity details
             var identityService = NinjectHelper.Kernel.Get<IIdentityService>();
             identityService.AuthToken = responseAsAuthTokenModel.Access_Token.ConvertToSecureString();
-            identityService.LoadIdentity(httpService);
+            var identityLoaded = await identityService.LoadIdentity(httpService);
+
+            if(!identityLoaded)
+            {
+                // Display error message
+                return;
+            }
 
             var nextPage = new SelectHallView();
             nextPage.Show();
             this.Close();
-
-            // Get Token with username and password + grant_type
-            // Save it as secureString
-            // Get IdentityService
-            // Save the token to the identityService
-            // LoadFullIdentity data with IdentityService
-            // Proceed to the next page
         }
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
