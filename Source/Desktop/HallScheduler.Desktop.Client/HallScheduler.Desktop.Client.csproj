@@ -68,8 +68,8 @@
     <Compile Include="Commands\FuncCommand.cs" />
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Configuration\NinjectConfig.cs" />
+    <Compile Include="Constants\URL.cs" />
     <Compile Include="Providers\LinqToEntitiesProvider.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\SelectHallViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>

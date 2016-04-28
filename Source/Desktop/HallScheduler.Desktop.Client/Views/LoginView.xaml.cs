@@ -1,25 +1,27 @@
-﻿using HallScheduler.Desktop.Client.ViewModels;
-using HallScheduler.Desktop.Infrastructure.ExtensionMethods;
-using HallScheduler.Desktop.Infrastructure.Helpers;
-using HallScheduler.Desktop.Models;
-using HallScheduler.Desktop.Services.Contracts;
-using Ninject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
-namespace HallScheduler.Desktop.Client.Views
+﻿namespace HallScheduler.Desktop.Client.Views
 {
+    using HallScheduler.Desktop.Client.Constants;
+    using HallScheduler.Desktop.Client.ViewModels;
+    using HallScheduler.Desktop.Infrastructure.ExtensionMethods;
+    using HallScheduler.Desktop.Infrastructure.Helpers;
+    using HallScheduler.Desktop.Models;
+    using HallScheduler.Desktop.Services.Contracts;
+    using Ninject;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Controls;
+    using System.Windows.Data;
+    using System.Windows.Documents;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Shapes;
+    using System.Windows.Threading;
+
     /// <summary>
     /// Interaction logic for LoginView.xaml
     /// </summary>
@@ -28,51 +30,86 @@ namespace HallScheduler.Desktop.Client.Views
         public LoginView()
         {
             this.InitializeComponent();
-            this.ViewModel = new LoginViewModel();
         }
 
-        public LoginViewModel ViewModel { get; set; }
+        private DispatcherTimer Timer { get; set; }
 
-        // Extract to view model
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            // Try login user
-            var httpService = NinjectHelper.Kernel.Get<IHttpService>();
-            var tokenUrl = "http://localhost:38013/Token";
-            var tokenData = new List<KeyValuePair<string, string>>()
+            var response = await this.Login();
+            if (response == null)
             {
-                new KeyValuePair<string, string>("grant_type", "password"),
-                new KeyValuePair<string, string>("username", this.usernameBox.Text),
-                new KeyValuePair<string, string>("password", this.passwordBox.SecurePassword.ConvertToUnsecureString())
-            };
-            var response = await httpService.Post<AuthTokenModel>(tokenUrl, tokenData);
-            var responseAsAuthTokenModel = (response as AuthTokenModel);
-            if(responseAsAuthTokenModel == null)
-            {
-                // Notify for login error and ask the user to check his credentials or register in the system
-
+                this.DisplayErrorMessage("Invalid credentials. Please try again.");
                 return;
             }
 
-            // Try load identity details
-            var identityService = NinjectHelper.Kernel.Get<IIdentityService>();
-            identityService.AuthToken = responseAsAuthTokenModel.Access_Token.ConvertToSecureString();
-            var identityLoaded = await identityService.LoadIdentity(httpService);
-
-            if(!identityLoaded)
+            var identityLoaded = await this.LoadIdentity(response);
+            if (!identityLoaded)
             {
-                // Display error message
+                this.DisplayErrorMessage("Identity load failure. There is something wrong with our service.");
                 return;
             }
 
             var nextPage = new SelectHallView();
             nextPage.Show();
+
             this.Close();
         }
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void DisplayErrorMessage(string errorMessage)
+        {
+            this.validationErrorsTextBlock.Text = errorMessage;
+            this.Timer = new DispatcherTimer();
+            this.Timer.Tick += HideValidationErrorMessages;
+            this.Timer.Interval = new TimeSpan(0, 0, 4);
+            this.Timer.Start();
+        }
+
+        private void HideValidationErrorMessages(object sender, EventArgs e)
+        {
+            this.validationErrorsTextBlock.Text = string.Empty;
+            this.Timer.Stop();
+        }
+    
+        private async Task<AuthTokenModel> Login()
+        {
+            AuthTokenModel response = null;
+
+            var username = this.usernameBox.Text;
+            var password = this.passwordBox.SecurePassword;
+
+            if ((username.Length >= 5 && username.Length <= 50) &&
+                (password.Length >= 5 && password.Length <= 50))
+            {
+                var tokenUrl = URL.Token;
+                var tokenData = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("grant_type", "password"),
+                    new KeyValuePair<string, string>("username", username),
+                    new KeyValuePair<string, string>("password", password.ConvertToUnsecureString())
+                };
+
+                var httpService = NinjectHelper.Kernel.Get<IHttpService>();
+                response = (await httpService.Post<AuthTokenModel>(tokenUrl, tokenData)) as AuthTokenModel;
+            }
+
+            password.Dispose();
+            return response;
+        }
+
+        private async Task<bool> LoadIdentity(AuthTokenModel auth)
+        {
+            var httpService = NinjectHelper.Kernel.Get<IHttpService>();
+            var identityService = NinjectHelper.Kernel.Get<IIdentityService>();
+            identityService.AuthToken = auth.Access_Token.ConvertToSecureString();
+            var identityLoaded = await identityService.LoadIdentity(httpService);
+
+            return identityLoaded;
         }
     }
 }

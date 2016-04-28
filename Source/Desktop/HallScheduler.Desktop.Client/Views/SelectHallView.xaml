@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:HallScheduler.Desktop.Client.Views"
         xmlns:autocomplete="clr-namespace:FeserWard.Controls;assembly=Intellibox"
         mc:Ignorable="d"
-        Title="SelectHallView" Height="989" Width="1306.333">
+        Title="SelectHallView" Height="500" Width="1306.333">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="23*"></ColumnDefinition>

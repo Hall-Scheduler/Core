@@ -5,15 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HallScheduler.Desktop.Client.Views"
         mc:Ignorable="d"
-        Title="LoginView" Height="220" Width="300">
+        Title="LoginView" Height="240" Width="400">
     <Grid>
-        <StackPanel>
-            <Label Width="128" HorizontalAlignment="Center">Username</Label>
-            <TextBox Name="usernameBox" Width="120"></TextBox>
-            <Label Width="128">Password</Label>
-            <PasswordBox Name="passwordBox" Width="120"></PasswordBox>
-            <Button Click="Button_Click" Content="Sign In" Width="120" Margin="10 10 10 5"></Button>
-            <Button Name="signUpButton" Click="signUpButton_Click" Content="Sign Up" Width="120"></Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.RowSpan="1"
+                    Grid.Column="0" Grid.ColumnSpan="2">
+            <Label Width="208" HorizontalAlignment="Center" FontSize="18">Username</Label>
+            <TextBox Name="usernameBox" Width="200" FontSize="18"></TextBox>
+            <Label Width="208" FontSize="18">Password</Label>
+            <PasswordBox Name="passwordBox" Width="200" FontSize="18"></PasswordBox>
+            <TextBlock Name="validationErrorsTextBlock"
+                       FontSize="10" Foreground="Red" 
+                       Width="200"></TextBlock>
         </StackPanel>
+        <Button Click="Button_Click" Content="Sign In" FontSize="18"
+                Width="100" Height="30" 
+                VerticalAlignment="Top" HorizontalAlignment="Right"
+                Grid.Row="1" Grid.RowSpan="1"
+                Grid.Column="0" Grid.ColumnSpan="1"></Button>
+        <Button Name="signUpButton" Click="signUpButton_Click" Content="Sign Up" FontSize="18"
+                Width="100" Height="30"
+                VerticalAlignment="Top" HorizontalAlignment="Left"
+                Grid.Row="1" Grid.RowSpan="1"
+                Grid.Column="1" Grid.ColumnSpan="1"></Button>
     </Grid>
 </Window>
