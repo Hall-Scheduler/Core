@@ -119,7 +119,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj">
+    <ProjectReference Include="..\..\Data\HallScheduler.Data.Common\HallScheduler.Data.Common.csproj">
+      <Project>{A3517B2F-0F8F-4731-80AF-1645A135033B}</Project>
+      <Name>HallScheduler.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj">
       <Project>{A334C5EB-4F00-43EA-8221-5134CF22374F}</Project>
       <Name>HallScheduler.Desktop.Infrastructure</Name>
     </ProjectReference>
@@ -141,7 +145,6 @@
     <Content Include="ExternalResources\Intellibox-1.3.0.0\bin\Intellibox.pdb" />
     <Resource Include="ExternalResources\Intellibox-1.3.0.0\bin\Intellibox.xml" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

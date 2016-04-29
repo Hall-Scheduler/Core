@@ -6,13 +6,14 @@
         xmlns:local="clr-namespace:HallScheduler.Desktop.Client.Views"
         xmlns:autocomplete="clr-namespace:FeserWard.Controls;assembly=Intellibox"
         mc:Ignorable="d"
-        Title="SelectHallView" Height="500" Width="1306.333">
+        Title="SelectHallView" Height="900" Width="1300">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="23*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1">
@@ -40,11 +41,9 @@
                 </autocomplete:Intellibox.Columns>
             </autocomplete:Intellibox>
         </StackPanel>
-
         <StackPanel Grid.Row="1" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1" 
                     HorizontalAlignment="Center">
-            <TabControl ItemsSource="{Binding WeeklySchedule, Mode=OneWay}" HorizontalAlignment="Center" Width="1200">
-                
+            <TabControl ItemsSource="{Binding WeeklySchedule, Mode=OneWay}" HorizontalAlignment="Center" Width="700" >
                 <TabControl.ItemTemplate>
                     <DataTemplate>
                         <TextBlock>
@@ -54,16 +53,14 @@
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <ListView ItemsSource="{Binding Schedule}">
+                        <ListView x:Name="listView" ItemsSource="{Binding Schedule}" SelectedItem="{Binding SelectedItem}">
                             <ListView.View>
                                 <GridView>
-                                    
                                     <GridView.ColumnHeaderContainerStyle>
                                         <Style TargetType="GridViewColumnHeader">
                                             <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
                                         </Style>
                                     </GridView.ColumnHeaderContainerStyle>
-                                    
                                     <GridViewColumn Header="Time range" Width="120">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
@@ -76,7 +73,8 @@
                                     <GridViewColumn Header="Options" Width="120" >
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button Content="Schedule" IsEnabled="{Binding IsSchedulingEnabled}" 
+                                                <Button Name="scheduleButton" Content="Schedule" 
+                                                        IsEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListView}}, Path=DataContext.IsSchedulingEnabled}" 
                                                         Width="100" HorizontalAlignment="Center"></Button>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
@@ -88,6 +86,19 @@
                 </TabControl.ContentTemplate>
             </TabControl>
         </StackPanel>
-
+        <StackPanel Grid.Row="2" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{Binding IdentityService.UserIdentity.FullName}" FontSize="18"></TextBlock>
+                <TextBlock Grid.Row="1" Text="{Binding IdentityService.Useridentity.Email}" FontSize="18"></TextBlock>
+                <TextBlock Grid.Row="2" Text="{Binding IdentityService.UserIdentity.Faculty}" FontSize="18"></TextBlock>
+                <TextBlock Grid.Row="3" Text="{Binding IdentityService.Useridentity.AcademicRank}" FontSize="18"></TextBlock>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

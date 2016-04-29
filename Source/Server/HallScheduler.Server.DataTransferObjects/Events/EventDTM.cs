@@ -39,17 +39,7 @@
         {
             get
             {
-                return $"{this.StartsAt.TotalHours:00}:{this.StartsAt.Minutes:00} - {this.EndsAt.TotalHours:00}:{this.EndsAt.Minutes:00}";
-            }
-        }
-
-        [IgnoreDataMember]
-        public bool IsSchedulingEnabled
-        {
-            get
-            {
-                // Check if admin
-                return String.IsNullOrEmpty(this.Topic);
+                return $"{this.StartsAt} - {this.EndsAt}";
             }
         }
 

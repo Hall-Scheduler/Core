@@ -45,6 +45,7 @@
 
             var result = new UserIdentity()
             {
+                Id = user.Id,
                 UserName = user.UserName,
                 Email = user.Email,
                 AcademicRank = user.AcademicRank,

@@ -1,14 +1,16 @@
 ﻿namespace HallScheduler.Desktop.Client.ViewModels
 {
-    using Providers;
+    using Data.Common.Enumerations;
     using Infrastructure.Helpers;
     using Models;
-    using Server.DataTransferObjects.Events;
+    using Ninject;
+    using Providers;
     using Server.DataTransferObjects.Halls;
-    using Services;
+    using Services.Contracts;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Runtime.CompilerServices;
 
     public class SelectHallViewModel : INotifyPropertyChanged
@@ -17,10 +19,16 @@
         private HallBriefDTO selectedItem;
         private List<DailySchedule> weeklySchedule;
         private string selectedValue = " ";
+        private bool isSchedulingEnabled = false;
 
         public SelectHallViewModel()
         {
-            this.HttpService = new HttpService();
+            this.HttpService = NinjectHelper.Kernel.Get<IHttpService>();
+            this.IdentityService = NinjectHelper.Kernel.Get<IIdentityService>();
+            this.isSchedulingEnabled = this.IdentityService.UserIdentity.Roles
+                .Intersect(Enum.GetValues(typeof(IdentityRoleType)).Cast<IdentityRoleType>().ToList())
+                .Count() > 0;
+
             this.QueryProvider = new LinqToEntitiesProvider(this.HttpService);
             this.ClearSchedule();
         }
@@ -38,7 +46,9 @@
             }
         }
 
-        public HttpService HttpService { get; set; }
+        public IHttpService HttpService { get; set; }
+
+        public IIdentityService IdentityService { get; set; }
 
         public HallBriefDTO SelectedItem
         {
@@ -165,34 +175,12 @@
         {
             this.WeeklySchedule = new List<DailySchedule>()
                 {
-                    new DailySchedule() { DayOfWeek= DayOfWeek.Monday },
-                    new DailySchedule() { DayOfWeek= DayOfWeek.Tuesday },
-                    new DailySchedule() { DayOfWeek= DayOfWeek.Wednesday },
-                    new DailySchedule() { DayOfWeek= DayOfWeek.Thursday },
-                    new DailySchedule() { DayOfWeek= DayOfWeek.Friday }
+                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Monday },
+                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Tuesday },
+                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Wednesday },
+                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Thursday },
+                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Friday }
                 };
         }
-    }
-
-    // Extract to another class
-    public class DailySchedule
-    {
-        public DailySchedule()
-        {
-            this.Schedule = new List<EventDTM>()
-            {
-                new EventDTM(){ StartsAt = new TimeSpan(7,30,0), EndsAt = new TimeSpan(9,15,0) },
-                new EventDTM(){ StartsAt = new TimeSpan(9,30,0), EndsAt = new TimeSpan(11,15,0) },
-                new EventDTM(){ StartsAt = new TimeSpan(11,30,0), EndsAt = new TimeSpan(13,15,0) },
-                new EventDTM(){ StartsAt = new TimeSpan(13,45,0), EndsAt = new TimeSpan(15,30,0) },
-                new EventDTM(){ StartsAt = new TimeSpan(15,45,0), EndsAt = new TimeSpan(17,30,0) },
-                new EventDTM(){ StartsAt = new TimeSpan(17,45,0), EndsAt = new TimeSpan(19,30,0) },
-                new EventDTM(){ StartsAt = new TimeSpan(19,45,0), EndsAt = new TimeSpan(21,30,0) }
-            };
-        }
-
-        public DayOfWeek DayOfWeek { get; set; }
-
-        public List<EventDTM> Schedule { get; set; }
     }
 }

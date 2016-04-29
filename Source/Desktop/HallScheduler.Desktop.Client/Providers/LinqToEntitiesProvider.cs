@@ -1,26 +1,24 @@
 ﻿namespace HallScheduler.Desktop.Client.Providers
 {
+    using FeserWard.Controls;
+    using Models;
+    using Server.DataTransferObjects.Halls;
+    using Services.Contracts;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
-    using FeserWard.Controls;
-    using Models;
-    using Server.DataTransferObjects.Halls;
-    using Services;
-
     public class LinqToEntitiesProvider : IIntelliboxResultsProvider
     {
-        public LinqToEntitiesProvider(HttpService httpService)
+        public LinqToEntitiesProvider(IHttpService httpService)
         {
             this.HttpService = httpService;
-
             // TODO: Rethink the initialization logic
             this.Initialize();
         }
 
-        public HttpService HttpService { get; set; }
+        public IHttpService HttpService { get; set; }
 
         public List<HallBriefDTO> Halls { get; set; }
 

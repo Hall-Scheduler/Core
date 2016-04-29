@@ -8,7 +8,7 @@
     {
         public override void Load()
         {
-            Bind<IHttpService>().To<HttpService>();
+            Bind<IHttpService>().To<HttpService>().InSingletonScope();
             Bind<IIdentityService>().To<IdentityService>().InSingletonScope();
         }
     }

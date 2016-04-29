@@ -5,6 +5,7 @@
     using HallScheduler.Common.Constants;
     using Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
@@ -35,6 +36,14 @@
 
                 var halls = context.Halls.Where(x => x.Type != HallType.Cabinet).ToList();
                 var users = context.Users.Where(x => x.Roles.Any(z => z.RoleId == professorRole.Id)).ToList();
+                var daysOfWeek = new List<DayOfWeek>(5)
+                {
+                    DayOfWeek.Monday,
+                    DayOfWeek.Tuesday,
+                    DayOfWeek.Wednesday,
+                    DayOfWeek.Thursday,
+                    DayOfWeek.Friday
+                };
 
                 TimeSpan[] start = new TimeSpan[] {
                     new TimeSpan(7,30,0),
@@ -52,32 +61,34 @@
                     new TimeSpan(13,15,0),
                     new TimeSpan(15,30,0),
                     new TimeSpan(17,30,0),
+                    new TimeSpan(19,30,0),
                     new TimeSpan(21,30,0),
                 };
 
-                var daysOfTheWeek = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
-
-                for (int i = 1; i <= 100; i++)
+                for (int i = 0; i < 600; i++)
                 {
                     var hall = halls[i];
 
-                    for (int j = 0; j < start.Length; j++)
+                    for (int k = 0; k < daysOfWeek.Count; k++)
                     {
-                        var lecturer = users[this.Generator.Next(0, users.Count)];
-                        var dayOfWeek = daysOfTheWeek[this.Generator.Next(0, daysOfTheWeek.Count)];
-                        var topic = eventTopics[this.Generator.Next(0, eventTopics.Length)];
+                        var day = daysOfWeek[k];
 
-                        var hallEvent = new Event()
+                        for (int j = 0; j < start.Length; j++)
                         {
-                            LecturerId = lecturer.Id,
-                            DayOfWeek = dayOfWeek,
-                            HallId = hall.Id,
-                            StartsAt = start[j],
-                            EndsAt = end[j],
-                            Topic = eventTopics[this.Generator.Next(0, eventTopics.Length)]
-                        };
+                            var lecturer = users[this.Generator.Next(0, users.Count)];
+                            var topic = eventTopics[this.Generator.Next(0, eventTopics.Length)];
+                            var hallEvent = new Event()
+                            {
+                                HallId = hall.Id,
+                                LecturerId = lecturer.Id,
+                                DayOfWeek = day,
+                                StartsAt = start[j],
+                                EndsAt = end[j],
+                                Topic = topic
+                            };
 
-                        context.Events.AddOrUpdate(hallEvent);
+                            context.Events.AddOrUpdate(hallEvent);
+                        }
                     }
 
                     context.SaveChanges();

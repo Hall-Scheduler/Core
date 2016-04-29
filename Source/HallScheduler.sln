@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Desktop.Servi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Desktop.Models", "Desktop\HallScheduler.Desktop.Models\HallScheduler.Desktop.Models.csproj", "{F275B04F-589D-4018-ADC2-444E4109FF80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Desktop.Infrastructure", "HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj", "{A334C5EB-4F00-43EA-8221-5134CF22374F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HallScheduler.Desktop.Infrastructure", "Desktop\HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj", "{A334C5EB-4F00-43EA-8221-5134CF22374F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

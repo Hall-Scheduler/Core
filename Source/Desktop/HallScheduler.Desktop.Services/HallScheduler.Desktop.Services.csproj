@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +59,7 @@
       <Project>{A3517B2F-0F8F-4731-80AF-1645A135033B}</Project>
       <Name>HallScheduler.Data.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj">
+    <ProjectReference Include="..\HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj">
       <Project>{A334C5EB-4F00-43EA-8221-5134CF22374F}</Project>
       <Name>HallScheduler.Desktop.Infrastructure</Name>
     </ProjectReference>

@@ -41,9 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthTokenModel.cs" />
+    <Compile Include="DailySchedule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequestAuthTokenModel.cs" />
     <Compile Include="ResponseResult{T}.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Server\HallScheduler.Server.DataTransferObjects\HallScheduler.Server.DataTransferObjects.csproj">
+      <Project>{8B223247-FF6F-4824-A088-20E314CCA7E6}</Project>
+      <Name>HallScheduler.Server.DataTransferObjects</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

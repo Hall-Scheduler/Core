@@ -7,6 +7,7 @@
     using Server.DataTransferObjects.Account;
     using System.Security;
     using System.Threading.Tasks;
+
     public class IdentityService : IIdentityService
     {
         public UserIdentity UserIdentity { get; private set; }

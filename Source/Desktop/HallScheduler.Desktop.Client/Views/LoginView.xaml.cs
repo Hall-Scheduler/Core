@@ -104,6 +104,11 @@
 
         private async Task<bool> LoadIdentity(AuthTokenModel auth)
         {
+            if(auth == null || auth.Access_Token == null)
+            {
+                return false;
+            }
+
             var httpService = NinjectHelper.Kernel.Get<IHttpService>();
             var identityService = NinjectHelper.Kernel.Get<IIdentityService>();
             identityService.AuthToken = auth.Access_Token.ConvertToSecureString();
