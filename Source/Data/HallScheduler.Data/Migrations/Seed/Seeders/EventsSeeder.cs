@@ -65,7 +65,7 @@
                     new TimeSpan(21,30,0),
                 };
 
-                for (int i = 0; i < 600; i++)
+                for (int i = 0; i < 50; i++)
                 {
                     var hall = halls[i];
 

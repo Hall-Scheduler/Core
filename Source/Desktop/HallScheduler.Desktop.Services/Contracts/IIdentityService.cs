@@ -11,5 +11,7 @@
         SecureString AuthToken { get; set; }
 
         Task<bool> LoadIdentity(IHttpService httpService);
+
+        void ClearIdentity();
     }
 }

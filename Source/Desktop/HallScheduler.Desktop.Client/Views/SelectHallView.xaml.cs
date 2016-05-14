@@ -1,6 +1,9 @@
 ﻿namespace HallScheduler.Desktop.Client.Views
 {
+    using Infrastructure.Helpers;
+    using Ninject;
     using Providers;
+    using Services.Contracts;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -25,6 +28,15 @@
         {
             this.InitializeComponent();
             this.DataContext = new SelectHallViewModel();
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            NinjectHelper.Kernel.Get<IIdentityService>().ClearIdentity();
+
+            var loginView = new LoginView();
+            loginView.Show();
+            this.Close();
         }
     }
 }

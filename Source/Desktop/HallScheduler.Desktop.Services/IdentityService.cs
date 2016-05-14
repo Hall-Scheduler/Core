@@ -35,5 +35,10 @@
             this.UserIdentity = userIdentity;
             return true;
         }
+
+        public void ClearIdentity()
+        {
+            this.UserIdentity = null;
+        }
     }
 }

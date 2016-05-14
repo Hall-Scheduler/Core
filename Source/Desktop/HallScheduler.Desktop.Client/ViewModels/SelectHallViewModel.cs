@@ -1,5 +1,6 @@
 ﻿namespace HallScheduler.Desktop.Client.ViewModels
 {
+    using Commands;
     using Data.Common.Enumerations;
     using Infrastructure.Helpers;
     using Models;
@@ -12,7 +13,8 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Runtime.CompilerServices;
-
+    using System.Windows.Input;
+    using Views;
     public class SelectHallViewModel : INotifyPropertyChanged
     {
         private LinqToEntitiesProvider queryProvider;
