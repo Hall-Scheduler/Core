@@ -87,7 +87,8 @@
                 "Nikolay",
                 "Ivaylo",
                 "Simeon",
-                "Stiliyan"
+                "Stiliyan",
+                "Aneliya"
             };
             var lastNames = new string[]
             {
@@ -99,7 +100,8 @@
                 "Martinov",
                 "Dimitrov",
                 "Ivanov",
-                "Bogdanov"
+                "Bogdanov",
+                "Daskalova"
             };
 
             var faculties = Enum.GetValues(typeof(FacultyType))

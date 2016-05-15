@@ -3,6 +3,7 @@
     using Infrastructure.Helpers;
     using Ninject;
     using Providers;
+    using Server.DataTransferObjects.Events;
     using Services.Contracts;
     using System;
     using System.Collections.Generic;
@@ -37,6 +38,15 @@
             var loginView = new LoginView();
             loginView.Show();
             this.Close();
+        }
+
+        protected void HandleListViewItemDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var eventModel = ((ListViewItem)sender).Content as EventDTО; //Casting back to the binded EventDTM
+            var eventId = eventModel.Id;
+
+            var editEventView = new EditEventView(eventModel);
+            editEventView.Show();
         }
     }
 }

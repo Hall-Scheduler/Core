@@ -69,11 +69,16 @@
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Configuration\NinjectConfig.cs" />
     <Compile Include="Constants\URL.cs" />
-    <Compile Include="Providers\LinqToEntitiesProvider.cs" />
+    <Compile Include="Providers\LecturersProvider.cs" />
+    <Compile Include="Providers\HallsProvider.cs" />
+    <Compile Include="ViewModels\EditEventViewModel.cs" />
     <Compile Include="ViewModels\SelectHallViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\EditEventView.xaml.cs">
+      <DependentUpon>EditEventView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -81,6 +86,10 @@
     <Compile Include="Views\SelectHallView.xaml.cs">
       <DependentUpon>SelectHallView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\EditEventView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +131,10 @@
     <ProjectReference Include="..\..\Data\HallScheduler.Data.Common\HallScheduler.Data.Common.csproj">
       <Project>{A3517B2F-0F8F-4731-80AF-1645A135033B}</Project>
       <Name>HallScheduler.Data.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\HallScheduler.Data.Models\HallScheduler.Data.Models.csproj">
+      <Project>{3A0ACC93-7F52-4CFC-B796-EFAEA960875B}</Project>
+      <Name>HallScheduler.Data.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\HallScheduler.Desktop.Infrastructure\HallScheduler.Desktop.Infrastructure.csproj">
       <Project>{A334C5EB-4F00-43EA-8221-5134CF22374F}</Project>

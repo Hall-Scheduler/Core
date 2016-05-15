@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-
+    using System.Net.Http;
     using Newtonsoft.Json;
     using Contracts;
     using System;
@@ -11,7 +11,7 @@
 
     public class HttpService : IHttpService
     {
-        public async Task<object> Get<Т>(string url)
+        public async Task<object> GetAsync<Т>(string url)
         {
             using (var httpClient = new HttpClient())
             {
@@ -29,7 +29,7 @@
             }
         }
 
-        public async Task<object> Get<Т>(string url, string authToken)
+        public async Task<object> GetAsync<Т>(string url, string authToken)
         {
             using (var httpClient = new HttpClient())
             {
@@ -50,13 +50,29 @@
             }
         }
 
-        public async Task<object> Post<T>(string url, IEnumerable<KeyValuePair<string, string>> data)
+        public async Task<object> PostUrlEncodedAsync<T>(string url, IEnumerable<KeyValuePair<string, string>> data)
         {
             var query = new FormUrlEncodedContent(data);
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.PostAsync(url, query))
+                {
+                    using (var content = response.Content)
+                    {
+                        var responseContent = await content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<T>(responseContent);
+                        return result;
+                    }
+                }
+            }
+        }
+
+        public async Task<object> PostAsJsonAsync<T>(string url, object data)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                using (var response = await httpClient.PostAsJsonAsync(url, data))
                 {
                     using (var content = response.Content)
                     {

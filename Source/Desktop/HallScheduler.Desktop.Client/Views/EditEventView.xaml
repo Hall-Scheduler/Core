@@ -1,0 +1,52 @@
+﻿<Window x:Class="HallScheduler.Desktop.Client.Views.EditEventView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HallScheduler.Desktop.Client.Views"
+        xmlns:autocomplete="clr-namespace:FeserWard.Controls;assembly=Intellibox"
+        mc:Ignorable="d"
+        Title="EditEventView" Height="329.118" Width="405.882">
+    <Grid>
+        <StackPanel Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1">
+            <TextBlock Text="Lecturer" FontFamily="Segoe UI" FontSize="24" FontStretch="Expanded"
+                       HorizontalAlignment="Center" Height="33" Width="90" />
+            <autocomplete:Intellibox 
+        		x:Name="autocompleteLecturers" SelectAllOnFocus="True" 
+        		HorizontalAlignment="Center"
+        		DataProvider="{Binding LecturersProvider}"
+        		SelectedItem="{Binding SelectedLecturerItem}"
+                SelectedValue="{Binding SelectedLecturerValue}"
+        		DisplayedValueBinding="{Binding FullName}"
+        		Height="30" Width="200" 
+        		FontSize="18"
+        		ResultsHeight="200" ResultsWidth="420"
+        		ExplicitlyIncludeColumns="True">
+                <autocomplete:Intellibox.Columns>
+                    <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding FullName}" Header="Name" Width="210"/>
+                    <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Email}" Header="Type" Width="210"/>
+                </autocomplete:Intellibox.Columns>
+            </autocomplete:Intellibox>
+
+            <TextBlock Text="Topic" FontFamily="Segoe UI" FontSize="24" FontStretch="Expanded"
+        		HorizontalAlignment="Center" Height="33" Width="60" />
+            <TextBox Text="{Binding Topic}" 
+                     Name="tbTopic" 
+                     Width="200" Height="30" 
+                     HorizontalAlignment="Center"></TextBox>
+            <TextBlock Text="{Binding NotificationMessage}" 
+                       Foreground="{Binding NotificationMessageColor}" FontSize="12" 
+                       HorizontalAlignment="Center"></TextBlock>
+            <Button Content="Update" FontSize="16" FontWeight="DemiBold"
+                    HorizontalAlignment="Center" 
+                    Width="200" Height="30" 
+                    Margin="0,10,0,5"
+                    Command="{Binding UpdateEventCommand}" />
+            <Button Content="Cancel" Name="btnCancelEdit"
+                    FontSize="16" FontWeight="DemiBold"
+                    HorizontalAlignment="Center" 
+                    Width="200" Height="30"
+                    Click="btnCancelEdit_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

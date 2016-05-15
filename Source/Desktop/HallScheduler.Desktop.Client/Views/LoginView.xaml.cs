@@ -95,7 +95,7 @@
                 };
 
                 var httpService = NinjectHelper.Kernel.Get<IHttpService>();
-                response = (await httpService.Post<AuthTokenModel>(tokenUrl, tokenData)) as AuthTokenModel;
+                response = (await httpService.PostUrlEncodedAsync<AuthTokenModel>(tokenUrl, tokenData)) as AuthTokenModel;
             }
 
             password.Dispose();

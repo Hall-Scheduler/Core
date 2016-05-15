@@ -65,10 +65,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IEventsService.cs" />
     <Compile Include="Contracts\IHallsService.cs" />
     <Compile Include="Contracts\IRolesService.cs" />
     <Compile Include="Contracts\IUsersService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\EventsService.cs" />
     <Compile Include="Services\HallsService.cs" />
     <Compile Include="Services\RolesService.cs" />
     <Compile Include="Services\UsersService.cs" />
@@ -78,6 +80,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\HallScheduler.Common.Constants\HallScheduler.Common.Constants.csproj">
+      <Project>{EA5DB80F-BF9D-4565-8535-05E50C17FA11}</Project>
+      <Name>HallScheduler.Common.Constants</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\HallScheduler.Data.Common\HallScheduler.Data.Common.csproj">
       <Project>{a3517b2f-0f8f-4731-80af-1645a135033b}</Project>
       <Name>HallScheduler.Data.Common</Name>
@@ -93,6 +99,10 @@
     <ProjectReference Include="..\..\Server\HallScheduler.Server.DataTransferObjects\HallScheduler.Server.DataTransferObjects.csproj">
       <Project>{8b223247-ff6f-4824-a088-20e314cca7e6}</Project>
       <Name>HallScheduler.Server.DataTransferObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\HallScheduler.Server.Infrastructure\HallScheduler.Server.Infrastructure.csproj">
+      <Project>{51AD2630-144F-4A30-9BC7-8E9B03A578B8}</Project>
+      <Name>HallScheduler.Server.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\HallScheduler.Services.Common\HallScheduler.Services.Common.csproj">
       <Project>{690b2741-fbbd-454f-a398-4720fa1422fd}</Project>

@@ -11,6 +11,7 @@
     using System.Threading.Tasks;
     using System.Web.Http;
     using System.Web.Http.Cors;
+    using Common.Constants;
 
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Users")]
@@ -28,28 +29,26 @@
         //[ValidateRequestModel]
         public async Task<IHttpActionResult> GetAll()
         {
-            var result = await this.users.All()
-                .To<UserDetailedDataTransferModel>()
-                .ToListAsync();
+            var result = await this.users.All().To<UserDetailedDTO>().ToListAsync();
 
-            return this.Ok(new ResponseResultObject(true, $"Returned {result.Count} items", result));
+            return this.Ok(
+                new ResponseResultObject(
+                    API.Success,
+                    API.ReturnedItems(result.Count),
+                    result));
         }
 
         [HttpGet]
-        [Route("Professors")]
-        public async Task<IHttpActionResult> GetAllProfessors()
+        [Route("Lecturers")]
+        public IHttpActionResult GetAllLecturers()
         {
-            var context = new HallSchedulerDbContext();
-            var professorsRole = context.Roles.Where(x => x.Name == Roles.Professor).FirstOrDefault();
-            var result = await context.Users
-                .Where(x => x.Roles.Any(z => z.RoleId == professorsRole.Id))
-                .Select(x => new
-                {
-                    UserName = x.UserName,
-                    Email = x.Email
-                }).ToListAsync();
+            var result = this.users.AllWithRole(Roles.Professor).To<UserBriefDTO>().ToList();
 
-            return this.Ok(new ResponseResultObject(true, $"Returned {result.Count} items", result));
+            return this.Ok(
+                new ResponseResultObject(
+                    API.Success,
+                    API.ReturnedItems(result.Count),
+                    result));
         }
     }
 }

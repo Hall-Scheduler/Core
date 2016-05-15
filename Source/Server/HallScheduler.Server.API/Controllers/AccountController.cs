@@ -25,6 +25,7 @@
     using System.Data.Entity;
     using Data.Models;
     using Infrastructure;
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

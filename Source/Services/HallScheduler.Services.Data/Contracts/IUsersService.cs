@@ -9,6 +9,8 @@
     {
         IQueryable<User> All();
 
+        IQueryable<User> AllWithRole(string roleName);
+
         User GetById(string userId);
     }
 }

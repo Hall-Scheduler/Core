@@ -10,19 +10,22 @@
 
     public class HallScheduleDTO : IMapFrom<Hall>, IHaveCustomMappings
     {
-        public List<EventDTM> Monday { get; set; }
+        public int Id { get; set; }
 
-        public List<EventDTM> Tuesday { get; set; }
+        public List<EventDTО> Monday { get; set; }
 
-        public List<EventDTM> Wednesday { get; set; }
+        public List<EventDTО> Tuesday { get; set; }
 
-        public List<EventDTM> Thursday { get; set; }
+        public List<EventDTО> Wednesday { get; set; }
 
-        public List<EventDTM> Friday { get; set; }
+        public List<EventDTО> Thursday { get; set; }
+
+        public List<EventDTО> Friday { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Hall, HallScheduleDTO>()
+                .ForMember(dest => dest.Id, opts => opts.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Monday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Monday).ToList()))
                 .ForMember(dest => dest.Tuesday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Tuesday).ToList()))
                 .ForMember(dest => dest.Wednesday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Wednesday).ToList()))

@@ -24,7 +24,7 @@
             // TODO: Show identity loading failure error for the user
             var url = "http://localhost:38013/api/Identity";
             var authToken = this.AuthToken.ConvertToUnsecureString();
-            var response = await httpService.Get<ResponseResult<UserIdentity>>(url, authToken);
+            var response = await httpService.GetAsync<ResponseResult<UserIdentity>>(url, authToken);
             var userIdentity = (response as ResponseResult<UserIdentity>)?.Data;
 
             if(userIdentity == null)

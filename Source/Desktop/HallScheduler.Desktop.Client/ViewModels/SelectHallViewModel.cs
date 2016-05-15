@@ -6,6 +6,7 @@
     using Models;
     using Ninject;
     using Providers;
+    using Server.DataTransferObjects.Events;
     using Server.DataTransferObjects.Halls;
     using Services.Contracts;
     using System;
@@ -15,9 +16,10 @@
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
     using Views;
+
     public class SelectHallViewModel : INotifyPropertyChanged
     {
-        private LinqToEntitiesProvider queryProvider;
+        private HallsProvider queryProvider;
         private HallBriefDTO selectedItem;
         private List<DailySchedule> weeklySchedule;
         private string selectedValue = " ";
@@ -31,11 +33,11 @@
                 .Intersect(Enum.GetValues(typeof(IdentityRoleType)).Cast<IdentityRoleType>().ToList())
                 .Count() > 0;
 
-            this.QueryProvider = new LinqToEntitiesProvider(this.HttpService);
-            this.ClearSchedule();
+            this.QueryProvider = new HallsProvider(this.HttpService);
+            this.ClearSchedule(-1);
         }
 
-        public LinqToEntitiesProvider QueryProvider
+        public HallsProvider QueryProvider
         {
             get
             {
@@ -79,6 +81,20 @@
             }
         }
 
+        private EventDTО selectedEvent;
+        public EventDTО SelectedEvent
+        {
+            get
+            {
+                return this.selectedEvent;
+            }
+            set
+            {
+                this.selectedEvent = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         public List<DailySchedule> WeeklySchedule
         {
             get
@@ -104,11 +120,11 @@
             // TODO: Cache current request results
             try
             {
-                this.ClearSchedule();
-
                 var url = "http://localhost:38013/api/Halls/Schedule?hallId=" + this.SelectedItem.Id;
-                var response = await this.HttpService.Get<ResponseResult<HallScheduleDTO>>(url);
+                var response = await this.HttpService.GetAsync<ResponseResult<HallScheduleDTO>>(url);
                 var responseData = (response as ResponseResult<HallScheduleDTO>).Data;
+
+                this.ClearSchedule(responseData.Id);
 
                 if (responseData != null)
                 {
@@ -173,15 +189,15 @@
             this.NotifyPropertyChanged(PropertyHelper.GetPropertyName(() => this.WeeklySchedule));
         }
 
-        public void ClearSchedule()
+        public void ClearSchedule(int hallId)
         {
             this.WeeklySchedule = new List<DailySchedule>()
                 {
-                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Monday },
-                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Tuesday },
-                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Wednesday },
-                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Thursday },
-                    new DailySchedule(this.isSchedulingEnabled) { DayOfWeek= DayOfWeek.Friday }
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Monday, hallId) { DayOfWeek= DayOfWeek.Monday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Tuesday, hallId) { DayOfWeek= DayOfWeek.Tuesday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Wednesday, hallId) { DayOfWeek= DayOfWeek.Wednesday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Thursday, hallId) { DayOfWeek= DayOfWeek.Thursday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Friday, hallId) { DayOfWeek= DayOfWeek.Friday }
                 };
         }
     }

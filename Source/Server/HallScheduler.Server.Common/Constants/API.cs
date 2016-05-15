@@ -10,11 +10,15 @@
 
         // Routes (Common)
         public const string All = "All";
+        public const string Update = "Update";
 
-        // Routes (Hall controller)
+        // Routes (Hall Controller)
         public const string Halls = "api/Halls";
         public const string Schedule = "Schedule";
         public const string FullSchedule = "FullSchedule";
+
+        // Routes (Events Controller)
+        public const string Events = "api/Events";
 
         // Routes (Identity controller)
         public const string Identity = "api/Identity";

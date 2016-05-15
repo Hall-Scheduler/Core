@@ -5,10 +5,12 @@
 
     public interface IHttpService
     {
-        Task<object> Get<Т>(string url);
+        Task<object> GetAsync<Т>(string url);
 
-        Task<object> Get<Т>(string url, string authToken);
+        Task<object> GetAsync<Т>(string url, string authToken);
 
-        Task<object> Post<T>(string url, IEnumerable<KeyValuePair<string, string>> data);
+        Task<object> PostUrlEncodedAsync<T>(string url, IEnumerable<KeyValuePair<string, string>> data);
+
+        Task<object> PostAsJsonAsync<T>(string url, object data);
     }
 }

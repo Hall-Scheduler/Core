@@ -6,8 +6,10 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class UserDetailedDataTransferModel : IMapFrom<User>
+    public class UserDetailedDTO : IMapFrom<User>
     {
+        public string Id { get; set; }
+
         [MaxLength(ValidationConstants.FirstNameMaxLength, ErrorMessage = ValidationConstants.FirstNameMaxLengthErrorMessage)]
         [MinLength(ValidationConstants.FirstNameMinLength, ErrorMessage = ValidationConstants.FirstNameMinLengthErrorMessage)]
         public string FirstName { get; set; }
@@ -24,5 +26,13 @@
 
         [MinLength(ValidationConstants.EmailMinLength, ErrorMessage = ValidationConstants.EmailMinLengthErrorMessage)]
         public string Email { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return $"{this.FirstName} {this.LastName}";
+            }
+        }
     }
 }

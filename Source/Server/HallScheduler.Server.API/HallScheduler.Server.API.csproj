@@ -219,6 +219,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HallsController.cs" />
     <Compile Include="Controllers\IdentityController.cs" />
     <Compile Include="Controllers\UsersController.cs" />

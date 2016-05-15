@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Event.cs" />
     <Compile Include="Hall.cs" />
+    <Compile Include="EventLog.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -10,14 +10,12 @@
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [ForeignKey(NavigationPropertiesConstants.LecturerId)]
         public virtual User Lecturer { get; set; }
 
         [Required]
         public string LecturerId { get; set; }
 
-        [Required]
         [ForeignKey(NavigationPropertiesConstants.HallId)]
         public virtual Hall Hall { get; set; }
 

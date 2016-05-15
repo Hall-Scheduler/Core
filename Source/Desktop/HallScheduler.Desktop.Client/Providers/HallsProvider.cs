@@ -9,9 +9,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class LinqToEntitiesProvider : IIntelliboxResultsProvider
+    public class HallsProvider : IIntelliboxResultsProvider
     {
-        public LinqToEntitiesProvider(IHttpService httpService)
+        public HallsProvider(IHttpService httpService)
         {
             this.HttpService = httpService;
             // TODO: Rethink the initialization logic
@@ -32,7 +32,7 @@
             try
             {
                 var url = "http://localhost:38013/api/Halls/All";
-                var response = await this.HttpService.Get<ResponseResult<List<HallBriefDTO>>>(url);
+                var response = await this.HttpService.GetAsync<ResponseResult<List<HallBriefDTO>>>(url);
                 this.Halls = (response as ResponseResult<List<HallBriefDTO>>).Data;
             }
             catch (Exception exc)
