@@ -15,6 +15,7 @@
     using System.Linq;
     using System.Runtime.CompilerServices;
     using System.Windows.Input;
+    using System.Windows.Threading;
     using Views;
 
     public class SelectHallViewModel : INotifyPropertyChanged
@@ -25,6 +26,7 @@
         private string selectedValue = " ";
         private bool isSchedulingEnabled = false;
 
+        //Start timer to update the collection every 3 seconds
         public SelectHallViewModel()
         {
             this.HttpService = NinjectHelper.Kernel.Get<IHttpService>();
@@ -34,7 +36,7 @@
                 .Count() > 0;
 
             this.QueryProvider = new HallsProvider(this.HttpService);
-            this.ClearSchedule(-1);
+            this.RefreshSchedule(-1);
         }
 
         public HallsProvider QueryProvider
@@ -124,7 +126,7 @@
                 var response = await this.HttpService.GetAsync<ResponseResult<HallScheduleDTO>>(url);
                 var responseData = (response as ResponseResult<HallScheduleDTO>).Data;
 
-                this.ClearSchedule(responseData.Id);
+                this.RefreshSchedule(responseData.Id);
 
                 if (responseData != null)
                 {
@@ -189,7 +191,7 @@
             this.NotifyPropertyChanged(PropertyHelper.GetPropertyName(() => this.WeeklySchedule));
         }
 
-        public void ClearSchedule(int hallId)
+        public void RefreshSchedule(int hallId)
         {
             this.WeeklySchedule = new List<DailySchedule>()
                 {

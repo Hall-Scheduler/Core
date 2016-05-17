@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using System.Net.Http;
     using Newtonsoft.Json;
     using Contracts;
     using System;

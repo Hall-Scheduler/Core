@@ -21,13 +21,16 @@
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public EditEventViewModel()
+        public EditEventViewModel(SelectHallViewModel caller)
         {
+            this.Caller = caller;
             this.HttpService = NinjectHelper.Kernel.Get<IHttpService>();
             this.IdentityService = NinjectHelper.Kernel.Get<IIdentityService>();
             this.LecturersProvider = new LecturersProvider(this.HttpService);
             this.HallsProvider = new HallsProvider(this.HttpService);
         }
+
+        public SelectHallViewModel Caller { get; set; }
 
         public IHttpService HttpService { get; set; }
 
@@ -157,19 +160,27 @@
         {
             try
             {
-                this.UpdateEventModel();
+                var mustUpdateModel = this.UpdateEventModel();
 
-                var url = "http://localhost:38013/api/Events/Update";
-                var response = await this.HttpService.PostAsJsonAsync<ResponseResult<bool>>(url, this.SelectedEventItem);
-                var isUpdated = (response as ResponseResult<bool>).Data;
-
-                if (isUpdated)
+                if(mustUpdateModel)
                 {
-                    this.SetNotificationMessage("Green", "Event updated successfully.");
+                    var url = "http://localhost:38013/api/Events/Update";
+                    var response = await this.HttpService.PostAsJsonAsync<ResponseResult<bool>>(url, this.SelectedEventItem);
+                    var isUpdated = (response as ResponseResult<bool>).Data;
+
+                    if (isUpdated)
+                    {
+                        this.SetNotificationMessage("Green", "Event updated successfully.");
+                        this.Caller.LoadWeeklySchedule();
+                    }
+                    else
+                    {
+                        this.SetNotificationMessage("Red", "There was a problem updating the event.");
+                    }
                 }
                 else
                 {
-                    this.SetNotificationMessage("Red", "There was a problem updating the event.");
+                    this.SetNotificationMessage("Blue", "There is nothing to update here.");
                 }
             }
             catch (Exception exc)
@@ -178,11 +189,23 @@
             }
         }
 
-        private void UpdateEventModel()
+        private bool UpdateEventModel()
         {
-            this.SelectedEventItem.LecturerId = this.SelectedLecturerItem.Id;
-            this.SelectedEventItem.LecturerName = this.SelectedLecturerItem.FullName;
-            this.SelectedEventItem.Topic = this.Topic;
+            var mustUpdateItem = false;
+
+            if (this.SelectedLecturerItem != null)
+            {
+                this.SelectedEventItem.LecturerId = this.SelectedLecturerItem.Id;
+                this.SelectedEventItem.LecturerName = this.SelectedLecturerItem.FullName;
+                mustUpdateItem = true;
+            }
+            if (!String.IsNullOrEmpty(this.Topic))
+            {
+                this.SelectedEventItem.Topic = this.Topic;
+                mustUpdateItem = true;
+            }
+
+            return mustUpdateItem;
         }
 
         private void SetNotificationMessage(string color, string message)

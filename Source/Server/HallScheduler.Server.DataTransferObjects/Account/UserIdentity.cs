@@ -18,5 +18,37 @@
         public FacultyType Faculty { get; set; }
 
         public List<IdentityRoleType> Roles { get; set; }
+
+        public string DisplayFullName
+        {
+            get
+            {
+                return $"Name: {this.FullName}";
+            }
+        }
+
+        public string DisplayEmail
+        {
+            get
+            {
+                return $"Email: {this.Email}";
+            }
+        }
+
+        public string DisplayAcademicRank
+        {
+            get
+            {
+                return $"Academic Rank: {this.AcademicRank}";
+            }
+        }
+
+        public string DisplayFaculty
+        {
+            get
+            {
+                return $"Faculty: {this.Faculty}";
+            }
+        }
     }
 }

@@ -21,10 +21,10 @@
     /// </summary>
     public partial class EditEventView : Window
     {
-        public EditEventView(EventDTО eventModel)
+        public EditEventView(EventDTО eventModel, SelectHallViewModel caller)
         {
             this.InitializeComponent();
-            this.ViewModel = new EditEventViewModel();
+            this.ViewModel = new EditEventViewModel(caller);
             this.ViewModel.SelectedEventItem = eventModel;
             this.DataContext = this.ViewModel;
 

@@ -28,13 +28,15 @@
         public SelectHallView()
         {
             this.InitializeComponent();
-            this.DataContext = new SelectHallViewModel();
+            this.ViewModel = new SelectHallViewModel();
+            this.DataContext = this.ViewModel;
         }
+
+        public SelectHallViewModel ViewModel { get; set; }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             NinjectHelper.Kernel.Get<IIdentityService>().ClearIdentity();
-
             var loginView = new LoginView();
             loginView.Show();
             this.Close();
@@ -42,11 +44,17 @@
 
         protected void HandleListViewItemDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var eventModel = ((ListViewItem)sender).Content as EventDTО; //Casting back to the binded EventDTM
-            var eventId = eventModel.Id;
+            if (this.ViewModel.WeeklySchedule[1].Schedule[1].Id > 0)
+            {
+                var eventModel = ((ListViewItem)sender).Content as EventDTО; //Casting back to the binded EventDTM
+                var eventId = eventModel.Id;
 
-            var editEventView = new EditEventView(eventModel);
-            editEventView.Show();
+                var editEventView = new EditEventView(eventModel, this.ViewModel);
+
+                // Workaround to prevent focus switching between windows
+                Action showAction = () => editEventView.Show();
+                this.Dispatcher.BeginInvoke(showAction);
+            }
         }
     }
 }
