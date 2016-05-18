@@ -4,8 +4,9 @@
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using Common.Constants;
+    using Common.Contracts;
 
-    public class Event
+    public class Event : IEvent
     {
         [Key]
         public int Id { get; set; }

@@ -5,12 +5,15 @@
         // Common
         public const string RequestCannotBeEmpty = "Request cannot be empty or have NULL properties.";
         public const int Single = 1;
+        public const int Conflict = -3;
         public const bool Success = true;
         public const bool Failure = false;
 
         // Routes (Common)
         public const string All = "All";
         public const string Update = "Update";
+        public const string Create = "Create";
+
 
         // Routes (Hall Controller)
         public const string Halls = "api/Halls";
@@ -19,6 +22,7 @@
 
         // Routes (Events Controller)
         public const string Events = "api/Events";
+        public const int Overlap = -2;
 
         // Routes (Identity controller)
         public const string Identity = "api/Identity";
@@ -33,6 +37,11 @@
             {
                 return $"Returned {count} items";
             }
+        }
+
+        public static string Message(string message)
+        {
+            return $"{message}";
         }
     }
 }

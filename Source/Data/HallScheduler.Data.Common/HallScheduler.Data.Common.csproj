@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Constants\NavigationPropertiesConstants.cs" />
     <Compile Include="Constants\ValidationConstants.cs" />
+    <Compile Include="Contracts\IEvent.cs" />
     <Compile Include="Enumerations\AcademicRankType.cs" />
     <Compile Include="Enumerations\BlockType.cs" />
     <Compile Include="Enumerations\FacultyType.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="Enumerations\RoomType.cs" />
     <Compile Include="Enumerations\StageType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleNode.cs" />
+    <Compile Include="ScheduleTree.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
