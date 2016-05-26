@@ -48,7 +48,12 @@
     <Compile Include="Contracts\IService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\HallScheduler.Data.Models\HallScheduler.Data.Models.csproj">
+      <Project>{3A0ACC93-7F52-4CFC-B796-EFAEA960875B}</Project>
+      <Name>HallScheduler.Data.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

@@ -2,13 +2,14 @@
 {
     using AutoMapper;
     using Data.Common.Constants;
+    using Data.Common.Contracts;
     using Data.Models;
     using Infrastructure.Mapping;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Runtime.Serialization;
 
-    public class EventDTО : IMapFrom<Event>, IMapTo<Event>, IHaveCustomMappings
+    public class EventDTО : IEvent, IMapFrom<Event>, IMapTo<Event>, IHaveCustomMappings
     {
         [Required]
         public int Id { get; set; }

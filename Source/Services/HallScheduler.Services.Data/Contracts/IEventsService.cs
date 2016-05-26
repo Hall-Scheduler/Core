@@ -11,8 +11,8 @@
     {
         IQueryable<Event> All();
 
-        void Add(Event model);
+        int Add(Event model);
 
-        void Update(Event model);
+        int Update(Event model);
     }
 }

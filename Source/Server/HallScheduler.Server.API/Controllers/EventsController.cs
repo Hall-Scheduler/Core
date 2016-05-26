@@ -12,6 +12,7 @@
     using DataTransferObjects.Events;
     using Data.Models;
     using Infrastructure;
+    using HallScheduler.Common.Constants;
     [RoutePrefix(API.Events)]
     public class EventsController : BaseController
     {
@@ -26,22 +27,75 @@
         [Route(API.Update)]
         public IHttpActionResult UpdateEvent(EventDTО model)
         {
-            var eventDatabaseModel = this.Mapper.Map<Event>(model);
-
-            if (model.Id > 0)
+            if (!this.ModelState.IsValid)
             {
-                this.EventsService.Update(eventDatabaseModel);
+                return this.BadRequest(this.ModelState);
             }
-            else
+
+            // Try update 
+            var eventDatabaseModel = this.Mapper.Map<Event>(model);
+            var updateResult = this.EventsService.Update(eventDatabaseModel);
+
+            // Prepare response
+            var message = string.Empty;
+            var isSuccessful = false;
+            if (updateResult == API.Overlap)
             {
-                this.EventsService.Add(eventDatabaseModel);
+                message = "Event overlap occured. Update failed.";
+            }
+            else if (updateResult == API.Conflict)
+            {
+                message = "Database validation error.";
+            }
+            else if (updateResult > 0)
+            {
+                message = "Event successfully added.";
+                isSuccessful = true;
             }
 
             return this.Ok(
                 new ResponseResultObject(
-                    API.Success,
-                    API.ReturnedItems(API.Single),
-                    API.Success));
+                    isSuccessful,
+                    message,
+                    eventDatabaseModel));
+        }
+
+        [HttpPost]
+        [Route(API.Create)]
+        public IHttpActionResult CreateEvent(EventDTО model)
+        {
+            // Validate model
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest(this.ModelState);
+            }
+
+            // Try create
+            var eventDatabaseModel = this.Mapper.Map<Event>(model);
+            var creationResult = this.EventsService.Add(eventDatabaseModel);
+
+            // Prepare response
+            var message = string.Empty;
+            var isSuccessful = false;
+            if (creationResult == API.Overlap)
+            {
+                message = "Event overlap occured. Creation failed.";
+            }
+            else if (creationResult == API.Conflict)
+            {
+                message = "Database validation error.";
+            }
+            else if (creationResult > 0)
+            {
+                message = "Event successfully added.";
+                isSuccessful = true;
+            }
+
+            return this.Ok(
+                new ResponseResultObject(
+                    isSuccessful,
+                    message,
+                    eventDatabaseModel));
         }
     }
 }
