@@ -154,6 +154,7 @@
 
             // TODO: Refactor me please
             var mondaySchedule = this.WeeklySchedule[monday];
+            mondaySchedule.HallId = schedule.Id;
             for (int j = 0; j < schedule.Monday.Count; j++)
             {
                 var position = mondaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Monday[j].StartsAt));
@@ -161,6 +162,7 @@
             }
 
             var tuesdaySchedule = this.WeeklySchedule[tuesday];
+            tuesdaySchedule.HallId = schedule.Id;
             for (int j = 0; j < schedule.Tuesday.Count; j++)
             {
                 var position = tuesdaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Tuesday[j].StartsAt));
@@ -168,6 +170,7 @@
             }
 
             var wednesdaySchedule = this.WeeklySchedule[wednesday];
+            wednesdaySchedule.HallId = schedule.Id;
             for (int j = 0; j < schedule.Wednesday.Count; j++)
             {
                 var position = wednesdaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Wednesday[j].StartsAt));
@@ -175,6 +178,7 @@
             }
 
             var thursdaySchedule = this.WeeklySchedule[thursday];
+            thursdaySchedule.HallId = schedule.Id;
             for (int j = 0; j < schedule.Thursday.Count; j++)
             {
                 var position = thursdaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Thursday[j].StartsAt));
@@ -182,6 +186,7 @@
             }
 
             var fridaySchedule = this.WeeklySchedule[friday];
+            fridaySchedule.HallId = schedule.Id;
             for (int j = 0; j < schedule.Friday.Count; j++)
             {
                 var position = fridaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Friday[j].StartsAt));

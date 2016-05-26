@@ -44,7 +44,7 @@
 
         protected void HandleListViewItemDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (this.ViewModel.WeeklySchedule[1].Schedule[1].Id > 0)
+            if (this.ViewModel.WeeklySchedule[0].HallId > 0)
             {
                 var eventModel = ((ListViewItem)sender).Content as EventDTО; //Casting back to the binded EventDTM
                 var eventId = eventModel.Id;

@@ -33,6 +33,7 @@
             <TextBox Text="{Binding Topic}" 
                      Name="tbTopic" 
                      Width="200" Height="30" 
+                     FontSize="18"
                      HorizontalAlignment="Center"></TextBox>
             <TextBlock Text="{Binding NotificationMessage}" 
                        Foreground="{Binding NotificationMessageColor}" FontSize="12" 

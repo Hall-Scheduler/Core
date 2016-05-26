@@ -9,6 +9,8 @@
 
     public class DailySchedule : INotifyPropertyChanged
     {
+        public int HallId { get; set; }
+
         private EventDTО selectedItem;
 
         public DailySchedule(bool isSchedulingEnabled, DayOfWeek dayOfWeek, int hallId) 

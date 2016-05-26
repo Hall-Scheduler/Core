@@ -73,7 +73,7 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Topic" Width="350" DisplayMemberBinding="{Binding Topic}" />
+                                    <GridViewColumn Header="Topic" Width="330" DisplayMemberBinding="{Binding Topic}" />
                                     <GridViewColumn Header="Lecturer" Width="150" DisplayMemberBinding="{Binding LecturerName}" />
                                 </GridView>
                             </ListView.View>
