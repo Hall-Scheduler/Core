@@ -71,14 +71,14 @@
     <Compile Include="Constants\URL.cs" />
     <Compile Include="Providers\LecturersProvider.cs" />
     <Compile Include="Providers\HallsProvider.cs" />
-    <Compile Include="ViewModels\EditEventViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleEventViewModel.cs" />
     <Compile Include="ViewModels\SelectHallViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\EditEventView.xaml.cs">
-      <DependentUpon>EditEventView.xaml</DependentUpon>
+    <Compile Include="Views\ScheduleEventView.xaml.cs">
+      <DependentUpon>ScheduleEventView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -86,7 +86,7 @@
     <Compile Include="Views\SelectHallView.xaml.cs">
       <DependentUpon>SelectHallView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\EditEventView.xaml">
+    <Page Include="Views\ScheduleEventView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

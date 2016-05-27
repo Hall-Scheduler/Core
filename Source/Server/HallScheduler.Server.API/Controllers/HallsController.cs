@@ -14,16 +14,16 @@
     {
         public HallsController(IHallsService halls)
         {
-            this.Halls = halls;
+            this.HallsService = halls;
         }
 
-        public IHallsService Halls { get; set; }
+        public IHallsService HallsService { get; set; }
 
         [HttpGet]
         [Route(API.All)]
         public async Task<IHttpActionResult> GetAll()
         {
-            var result = await this.Halls.All().To<HallBriefDTO>().ToListAsync();
+            var result = await this.HallsService.All().To<HallBriefDTO>().ToListAsync();
 
             return this.Ok(
                 new ResponseResultObject(
@@ -36,7 +36,7 @@
         [Route(API.Schedule)]
         public IHttpActionResult GetSchedule(int hallId)
         {
-            var hall = this.Halls.GetById(hallId);
+            var hall = this.HallsService.GetById(hallId);
             var result = this.Mapper.Map<HallScheduleDTO>(hall);
 
             return this.Ok(
@@ -50,7 +50,7 @@
         [Route("HallDetailsWithSchedule")]
         public IHttpActionResult GetHallDetailsWithSchedule(int hallId)
         {
-            var hall = this.Halls.GetById(hallId);
+            var hall = this.HallsService.GetById(hallId);
             var result = this.Mapper.Map<HallDetailedDTO>(hall);
 
             return this.Ok(
@@ -64,7 +64,7 @@
         [Route(API.FullSchedule)]
         public async Task<IHttpActionResult> GetFullSchedule()
         {
-            var result = await this.Halls.All().To<HallDetailedDTO>().ToListAsync();
+            var result = await this.HallsService.All().To<HallDetailedDTO>().ToListAsync();
 
             return this.Ok(
                 new ResponseResultObject(

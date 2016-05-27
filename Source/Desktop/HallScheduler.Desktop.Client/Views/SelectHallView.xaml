@@ -81,6 +81,8 @@
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
+            <Button Content="Schedule event" Width="200" Height="30" Margin="10" Name="btnScheduleEvent" Click="btnScheduleEvent_Click">
+            </Button>
         </StackPanel>
         
         <StackPanel Grid.Row="1" Grid.Column="1">

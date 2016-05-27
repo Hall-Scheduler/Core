@@ -49,12 +49,36 @@
                 var eventModel = ((ListViewItem)sender).Content as EventDTО; //Casting back to the binded EventDTM
                 var eventId = eventModel.Id;
 
-                var editEventView = new EditEventView(eventModel, this.ViewModel);
+                //var editEventView = new ScheduleEventView(eventModel, this.ViewModel);
 
                 // Workaround to prevent focus switching between windows
-                Action showAction = () => editEventView.Show();
+                //Action showAction = () => editEventView.Show();
+                //this.Dispatcher.BeginInvoke(showAction);
+            }
+        }
+
+        private void btnScheduleEvent_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.ViewModel.WeeklySchedule != null && this.ViewModel.WeeklySchedule[0].HallId > 0)
+            {
+                var input = "07:15";
+                var inputAsTimespan = this.ParseTimeString(input);
+                var scheduleEventView = new ScheduleEventView(this.ViewModel);
+
+                // Workaround to prevent focus switching between windows
+                Action showAction = () => scheduleEventView.Show();
                 this.Dispatcher.BeginInvoke(showAction);
             }
+        }
+
+        private TimeSpan ParseTimeString(string timespan)
+        {
+            var elements = timespan.Split(':');
+            var hours = elements[0][0] == '0' ? int.Parse(elements[0][1].ToString()) : int.Parse(elements[0]);
+            var minutes = elements[1][0] == '0' ? int.Parse(elements[1][1].ToString()) : int.Parse(elements[1]);
+            var seconds = 0;
+
+            return new TimeSpan(hours, minutes, seconds);
         }
     }
 }

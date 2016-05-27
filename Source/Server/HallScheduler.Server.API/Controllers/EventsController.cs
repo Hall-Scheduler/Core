@@ -13,6 +13,9 @@
     using Data.Models;
     using Infrastructure;
     using HallScheduler.Common.Constants;
+    using Data.Common;
+    using Data.Common.Contracts;
+
     [RoutePrefix(API.Events)]
     public class EventsController : BaseController
     {
@@ -49,7 +52,7 @@
             }
             else if (updateResult > 0)
             {
-                message = "Event successfully added.";
+                message = "Event successfully updated.";
                 isSuccessful = true;
             }
 
@@ -95,7 +98,7 @@
                 new ResponseResultObject(
                     isSuccessful,
                     message,
-                    eventDatabaseModel));
+                    this.Mapper.Map<EventDTО>(eventDatabaseModel)));
         }
     }
 }

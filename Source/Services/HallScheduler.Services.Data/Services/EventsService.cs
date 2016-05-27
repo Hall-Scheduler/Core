@@ -12,9 +12,12 @@
     using Server.Common.Constants;
     public class EventsService : IEventsService
     {
-        public EventsService(IRepository<Event> events)
+        public EventsService(
+            IRepository<Event> events, 
+            IRepository<Hall> halls)
         {
             this.Events = events;
+            this.Halls = halls;
         }
 
         public IRepository<Event> Events { get; set; }
@@ -37,11 +40,11 @@
 
             // Build tree
             var scheduleTree = new ScheduleTree<Event>();
-            scheduleTree.BuildFromList(schedule);
+            scheduleTree.BuildTreeFromList(schedule);
 
             // Try insert
-            var insertionSuccessfull = scheduleTree.CanInsert(modelAsScheduleNode);
-            if (insertionSuccessfull)
+            var canInsertEvent = scheduleTree.CanInsert(modelAsScheduleNode);
+            if (canInsertEvent)
             {
                 try
                 {
@@ -71,11 +74,11 @@
 
             // Build tree
             var scheduleTree = new ScheduleTree<Event>();
-            scheduleTree.BuildFromList(schedule);
+            scheduleTree.BuildTreeFromList(schedule);
 
             // Try update
-            var insertionSuccessfull = scheduleTree.CanInsert(modelAsScheduleNode);
-            if(insertionSuccessfull)
+            var canInsertUpdatedEvent = scheduleTree.CanInsert(modelAsScheduleNode);
+            if(canInsertUpdatedEvent)
             {
                 try
                 {
@@ -87,7 +90,6 @@
                 {
                     return API.Conflict;
                 }
-              
             }
             else
             {

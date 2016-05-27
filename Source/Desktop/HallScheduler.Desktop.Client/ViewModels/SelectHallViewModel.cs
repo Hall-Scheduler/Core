@@ -34,9 +34,7 @@
             this.isSchedulingEnabled = this.IdentityService.UserIdentity.Roles
                 .Intersect(Enum.GetValues(typeof(IdentityRoleType)).Cast<IdentityRoleType>().ToList())
                 .Count() > 0;
-
             this.QueryProvider = new HallsProvider(this.HttpService);
-            this.RefreshSchedule(-1);
         }
 
         public HallsProvider QueryProvider
@@ -152,46 +150,11 @@
             int thursday = 3;
             int friday = 4;
 
-            // TODO: Refactor me please
-            var mondaySchedule = this.WeeklySchedule[monday];
-            mondaySchedule.HallId = schedule.Id;
-            for (int j = 0; j < schedule.Monday.Count; j++)
-            {
-                var position = mondaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Monday[j].StartsAt));
-                mondaySchedule.Schedule[position] = schedule.Monday[j];
-            }
-
-            var tuesdaySchedule = this.WeeklySchedule[tuesday];
-            tuesdaySchedule.HallId = schedule.Id;
-            for (int j = 0; j < schedule.Tuesday.Count; j++)
-            {
-                var position = tuesdaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Tuesday[j].StartsAt));
-                tuesdaySchedule.Schedule[position] = schedule.Tuesday[j];
-            }
-
-            var wednesdaySchedule = this.WeeklySchedule[wednesday];
-            wednesdaySchedule.HallId = schedule.Id;
-            for (int j = 0; j < schedule.Wednesday.Count; j++)
-            {
-                var position = wednesdaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Wednesday[j].StartsAt));
-                wednesdaySchedule.Schedule[position] = schedule.Wednesday[j];
-            }
-
-            var thursdaySchedule = this.WeeklySchedule[thursday];
-            thursdaySchedule.HallId = schedule.Id;
-            for (int j = 0; j < schedule.Thursday.Count; j++)
-            {
-                var position = thursdaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Thursday[j].StartsAt));
-                thursdaySchedule.Schedule[position] = schedule.Thursday[j];
-            }
-
-            var fridaySchedule = this.WeeklySchedule[friday];
-            fridaySchedule.HallId = schedule.Id;
-            for (int j = 0; j < schedule.Friday.Count; j++)
-            {
-                var position = fridaySchedule.Schedule.FindIndex(x => x.StartsAt.Equals(schedule.Friday[j].StartsAt));
-                fridaySchedule.Schedule[position] = schedule.Friday[j];
-            }
+            this.WeeklySchedule[monday].Schedule = schedule.Monday;
+            this.WeeklySchedule[tuesday].Schedule = schedule.Tuesday;
+            this.WeeklySchedule[wednesday].Schedule = schedule.Wednesday;
+            this.WeeklySchedule[thursday].Schedule = schedule.Thursday;
+            this.WeeklySchedule[friday].Schedule = schedule.Friday;
 
             this.NotifyPropertyChanged(PropertyHelper.GetPropertyName(() => this.WeeklySchedule));
         }
@@ -200,11 +163,11 @@
         {
             this.WeeklySchedule = new List<DailySchedule>()
                 {
-                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Monday, hallId) { DayOfWeek= DayOfWeek.Monday },
-                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Tuesday, hallId) { DayOfWeek= DayOfWeek.Tuesday },
-                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Wednesday, hallId) { DayOfWeek= DayOfWeek.Wednesday },
-                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Thursday, hallId) { DayOfWeek= DayOfWeek.Thursday },
-                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Friday, hallId) { DayOfWeek= DayOfWeek.Friday }
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Monday, hallId) { DayOfWeek = DayOfWeek.Monday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Tuesday, hallId) { DayOfWeek = DayOfWeek.Tuesday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Wednesday, hallId) { DayOfWeek = DayOfWeek.Wednesday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Thursday, hallId) { DayOfWeek = DayOfWeek.Thursday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Friday, hallId) { DayOfWeek = DayOfWeek.Friday }
                 };
         }
     }

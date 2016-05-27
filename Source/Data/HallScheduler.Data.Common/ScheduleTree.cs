@@ -1,23 +1,15 @@
 ﻿namespace HallScheduler.Data.Common
 {
-    using Contracts;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using Contracts;
 
     public class ScheduleTree<T>
         where T : IEvent
     {
-        public ScheduleTree()
-        {
-            this.GetAsList = new List<ScheduleNode<T>>();
-        }
-
         public ScheduleNode<T> Root { get; set; }
 
-        public List<ScheduleNode<T>> GetAsList { get; set; }
+        public List<ScheduleNode<T>> TreeAsList { get; set; }
 
         public bool Insert(ScheduleNode<T> nodeToInsert)
         {
@@ -138,11 +130,17 @@
             }
         }
 
-        public void BuildAsList(ScheduleNode<T> startNode)
+        public void BuildListFromTree()
+        {
+            this.TreeAsList = new List<ScheduleNode<T>>();
+            this.BuildListFromTree(this.Root);
+        }
+
+        public void BuildListFromTree(ScheduleNode<T> startNode)
         {
             if (startNode != null)
             {
-                this.GetAsList.Add(startNode);
+                this.TreeAsList.Add(startNode);
             }
             else
             {
@@ -151,16 +149,16 @@
 
             if (startNode.LeftChild != null)
             {
-                this.BuildAsList(startNode.LeftChild);
+                this.BuildListFromTree(startNode.LeftChild);
             }
 
             if (startNode.RightChild != null)
             {
-                this.BuildAsList(startNode.RightChild);
+                this.BuildListFromTree(startNode.RightChild);
             }
         }
 
-        public void BuildFromList(List<ScheduleNode<T>> schedule)
+        public void BuildTreeFromList(List<ScheduleNode<T>> schedule)
         {
             if(schedule != null)
             {

@@ -19,23 +19,30 @@
     /// <summary>
     /// Interaction logic for EditEventView.xaml
     /// </summary>
-    public partial class EditEventView : Window
+    public partial class ScheduleEventView : Window
     {
-        public EditEventView(EventDTО eventModel, SelectHallViewModel caller)
+        public ScheduleEventView(SelectHallViewModel caller)
         {
             this.InitializeComponent();
-            this.ViewModel = new EditEventViewModel(caller);
-            this.ViewModel.SelectedEventItem = eventModel;
+            this.ViewModel = new ScheduleEventViewModel(caller);
             this.DataContext = this.ViewModel;
-
-            this.tbTopic.Text = eventModel.Topic;
         }
 
-        public EditEventViewModel ViewModel { get; set; }
+        public ScheduleEventViewModel ViewModel { get; set; }
 
         private void btnCancelEdit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void dropdownDays_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dropdownDays_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

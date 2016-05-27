@@ -17,11 +17,11 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Input;
-    public class EditEventViewModel : INotifyPropertyChanged
+    public class ScheduleEventViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public EditEventViewModel(SelectHallViewModel caller)
+        public ScheduleEventViewModel(SelectHallViewModel caller)
         {
             this.Caller = caller;
             this.HttpService = NinjectHelper.Kernel.Get<IHttpService>();
@@ -120,6 +120,59 @@
             }
         }
 
+        private string _dayOfWeek;
+        public string DayOfWeek
+        {
+            get
+            {
+                return this._dayOfWeek;
+            }
+            set
+            {
+                this._dayOfWeek = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        public List<string> DaysOfTheWeek
+        {
+            get
+            {
+                return Enum.GetValues(typeof(DayOfWeek))
+                    .Cast<DayOfWeek>()
+                    .Select(x => x.ToString())
+                    .ToList();
+            }
+        }
+
+        private string _startsAt;
+        public string StartsAt
+        {
+            get
+            {
+                return this._startsAt;
+            }
+            set
+            {
+                this._startsAt = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
+        private string _endsAt;
+        public string EndsAt
+        {
+            get
+            {
+                return this._endsAt;
+            }
+            set
+            {
+                this._endsAt = value;
+                this.NotifyPropertyChanged();
+            }
+        }
+
         private string _notificationMessage;
         public string NotificationMessage
         {
@@ -148,11 +201,11 @@
             }
         }
 
-        public ICommand UpdateEventCommand
+        public ICommand CreateEventCommand
         {
             get
             {
-                return new ActionCommand(this.UpdateEvent);
+                return new ActionCommand(this.AddEvent);
             }
         }
 
@@ -162,7 +215,7 @@
             {
                 var mustUpdateModel = this.UpdateEventModel();
 
-                if(mustUpdateModel)
+                if (mustUpdateModel)
                 {
                     var url = "http://localhost:38013/api/Events/Update";
                     var response = await this.HttpService.PostAsJsonAsync<ResponseResult<bool>>(url, this.SelectedEventItem);
@@ -181,6 +234,40 @@
                 else
                 {
                     this.SetNotificationMessage("Blue", "There is nothing to update here.");
+                }
+            }
+            catch (Exception exc)
+            {
+                this.SetNotificationMessage("Red", exc.ToString());
+            }
+        }
+
+        private async void AddEvent()
+        {
+            try
+            {
+                var eventToAdd = new EventDTО
+                {
+                    DayOfWeek = this.DayOfWeek,
+                    StartsAt = this.ParseTimeString(this.StartsAt),
+                    EndsAt = this.ParseTimeString(this.EndsAt),
+                    HallId = this.Caller.SelectedItem.Id,
+                    LecturerId = this.SelectedLecturerItem.Id,
+                    Topic = this.Topic
+                };
+                var url = "http://localhost:38013/api/Events/Create";
+                var response = await this.HttpService.PostAsJsonAsync<ResponseResult<EventDTО>>(url, eventToAdd);
+                var responseResult = (response as ResponseResult<EventDTО>);
+                var isCreated = responseResult.Data.Id > 0;
+
+                if (isCreated)
+                {
+                    this.SetNotificationMessage("Green", responseResult.Message);
+                    this.Caller.LoadWeeklySchedule();
+                }
+                else
+                {
+                    this.SetNotificationMessage("Red", responseResult.Message);
                 }
             }
             catch (Exception exc)
@@ -217,6 +304,16 @@
         public void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private TimeSpan ParseTimeString(string timespan)
+        {
+            var elements = timespan.Split(':');
+            var hours = elements[0][0] == '0' ? int.Parse(elements[0][1].ToString()) : int.Parse(elements[0]);
+            var minutes = elements[1][0] == '0' ? int.Parse(elements[1][1].ToString()) : int.Parse(elements[1]);
+            var seconds = 0;
+
+            return new TimeSpan(hours, minutes, seconds);
         }
     }
 }
