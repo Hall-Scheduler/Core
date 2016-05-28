@@ -13,7 +13,7 @@
         public const string All = "All";
         public const string Update = "Update";
         public const string Create = "Create";
-
+        public const string Delete = "Delete";
 
         // Routes (Hall Controller)
         public const string Halls = "api/Halls";
@@ -23,6 +23,7 @@
         // Routes (Events Controller)
         public const string Events = "api/Events";
         public const int Overlap = -2;
+        public const int InvalidModel = -21;
 
         // Routes (Identity controller)
         public const string Identity = "api/Identity";

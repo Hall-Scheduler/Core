@@ -144,17 +144,19 @@
 
         public void ParseSchedule(HallScheduleDTO schedule)
         {
-            int monday = 0;
-            int tuesday = 1;
-            int wednesday = 2;
-            int thursday = 3;
-            int friday = 4;
+            Comparison<EventDTО> eventsComparer = (x, y) => x.StartsAt.TotalMilliseconds.CompareTo(y.StartsAt.TotalMilliseconds);
 
-            this.WeeklySchedule[monday].Schedule = schedule.Monday;
-            this.WeeklySchedule[tuesday].Schedule = schedule.Tuesday;
-            this.WeeklySchedule[wednesday].Schedule = schedule.Wednesday;
-            this.WeeklySchedule[thursday].Schedule = schedule.Thursday;
-            this.WeeklySchedule[friday].Schedule = schedule.Friday;
+            schedule.Monday.Sort(eventsComparer);
+            schedule.Tuesday.Sort(eventsComparer);
+            schedule.Wednesday.Sort(eventsComparer);
+            schedule.Thursday.Sort(eventsComparer);
+            schedule.Friday.Sort(eventsComparer);
+
+            this.WeeklySchedule[0].Schedule = schedule.Monday;
+            this.WeeklySchedule[1].Schedule = schedule.Tuesday;
+            this.WeeklySchedule[2].Schedule = schedule.Wednesday;
+            this.WeeklySchedule[3].Schedule = schedule.Thursday;
+            this.WeeklySchedule[4].Schedule = schedule.Friday;
 
             this.NotifyPropertyChanged(PropertyHelper.GetPropertyName(() => this.WeeklySchedule));
         }

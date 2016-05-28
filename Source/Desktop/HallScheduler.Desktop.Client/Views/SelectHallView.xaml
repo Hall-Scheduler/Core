@@ -17,21 +17,18 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1">
-            <TextBlock Text="Search" FontFamily="Segoe UI" FontSize="28" FontStretch="Expanded"
-                   HorizontalAlignment="Center" Height="34" Width="130" />
-            <autocomplete:Intellibox 
-                Grid.Row="1" Grid.RowSpan="1" 
-                Grid.Column="1" Grid.ColumnSpan="1"
-                x:Name="autocompleteTextBox" SelectAllOnFocus="True" 
-                HorizontalAlignment="Center"
-                DataProvider="{Binding QueryProvider}"
-                SelectedItem="{Binding SelectedItem}"
-                DisplayedValueBinding="{Binding Name}"
-                SelectedValue="{Binding SelectedValue}"
-                Height="30" Width="420" 
-                FontSize="18"
-                ResultsHeight="200" ResultsWidth="420"
-                ExplicitlyIncludeColumns="True" Margin="0,0,46,0">
+            <TextBlock Text="Search" FontFamily="Segoe UI" FontSize="20" FontStretch="Expanded"
+        		Height="27" HorizontalAlignment="Center"/>
+            <autocomplete:Intellibox
+            	x:Name="autocompleteTextBox" SelectAllOnFocus="True" 
+            	DataProvider="{Binding QueryProvider}"
+            	SelectedItem="{Binding SelectedItem}"
+            	DisplayedValueBinding="{Binding Name}"
+            	SelectedValue="{Binding SelectedValue}"
+            	Height="30" 
+            	FontSize="18"
+            	ResultsHeight="200" ResultsWidth="420"
+            	ExplicitlyIncludeColumns="True" Margin="218,0,214,0">
                 <autocomplete:Intellibox.Columns>
                     <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Type}" Header="Type" Width="100"/>
                     <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Name}" Header="Name" Width="90"/>
@@ -81,10 +78,13 @@
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
-            <Button Content="Schedule event" Width="200" Height="30" Margin="10" Name="btnScheduleEvent" Click="btnScheduleEvent_Click">
-            </Button>
+            <Button Content="Schedule event" 
+                    FontSize="18"
+                    Width="660" Height="30" 
+                    Margin="10" 
+                    x:Name="btnScheduleEvent" Click="btnScheduleEvent_Click"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label x:Name="label" Content="User details:" FontSize="24" 
                    HorizontalAlignment="Left" 
@@ -96,7 +96,7 @@
             <TextBlock Width="200" Height="32" FontSize="12" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayAcademicRank}" ></TextBlock>
             <TextBlock Width="200" Height="32" FontSize="12" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayFaculty}" ></TextBlock>
         </StackPanel>
-        
+
         <Button Grid.Row="0" Grid.Column="1" Width="180" Height="40" HorizontalAlignment="Left"
                 Content="Logout" FontSize="24" Name="btnLogout" Click="btnLogout_Click" />
     </Grid>

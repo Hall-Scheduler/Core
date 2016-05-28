@@ -6,7 +6,6 @@
     using Ninject;
     using Providers;
     using Server.DataTransferObjects.Events;
-    using Server.DataTransferObjects.Halls;
     using Server.DataTransferObjects.Users;
     using Services.Contracts;
     using System;
@@ -18,11 +17,11 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
-    public class ScheduleEventViewModel : INotifyPropertyChanged
+    public class EditEventViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ScheduleEventViewModel(SelectHallViewModel caller)
+        public EditEventViewModel(SelectHallViewModel caller, EventDTО selectedEvent)
         {
             this.Caller = caller;
             this.HttpService = NinjectHelper.Kernel.Get<IHttpService>();
@@ -30,6 +29,11 @@
             this.LecturersProvider = new LecturersProvider(this.HttpService);
             this.HallsProvider = new HallsProvider(this.HttpService);
 
+            this.SelectedEvent = selectedEvent;
+            this.StartsAt = selectedEvent.StartsAt.ToString().Substring(0, 5);
+            this.EndsAt = selectedEvent.EndsAt.ToString().Substring(0, 5);
+            this.Topic = selectedEvent.Topic;
+            this.DayOfWeek = selectedEvent.DayOfWeek;
             this.Times = this.InitializeTimesList(15);
         }
 
@@ -38,6 +42,20 @@
         public IHttpService HttpService { get; set; }
 
         public IIdentityService IdentityService { get; set; }
+
+        private EventDTО _selectedEvent;
+        public EventDTО SelectedEvent
+        {
+            get
+            {
+                return this._selectedEvent;
+            }
+            set
+            {
+                this._selectedEvent = value;
+                this.NotifyPropertyChanged();
+            }
+        }
 
         private LecturersProvider _lecturersProvider;
         public LecturersProvider LecturersProvider
@@ -204,40 +222,79 @@
             }
         }
 
-        public ICommand CreateEventCommand
+        public ICommand UpdateEventCommand
         {
             get
             {
-                return new ActionCommand(this.AddEvent);
+                return new ActionCommand(this.UpdateEvent);
             }
         }
 
-        private async void AddEvent()
+        public ICommand DeleteEventCommand
+        {
+            get
+            {
+                return new ActionCommand(this.DeleteEvent);
+            }
+        }
+
+        private async void UpdateEvent()
         {
             try
             {
-                var eventToAdd = new EventDTО
+                if (this.SelectedLecturerItem != null)
                 {
-                    DayOfWeek = this.DayOfWeek,
-                    StartsAt = this.ParseTimeString(this.StartsAt),
-                    EndsAt = this.ParseTimeString(this.EndsAt),
-                    HallId = this.Caller.SelectedItem.Id,
-                    LecturerId = this.SelectedLecturerItem.Id,
-                    Topic = this.Topic
-                };
-                var url = "http://localhost:38013/api/Events/Create";
-                var response = await this.HttpService.PostAsJsonAsync<ResponseResult<EventDTО>>(url, eventToAdd);
-                var responseResult = (response as ResponseResult<EventDTО>);
-                var isCreated = responseResult.Data.Id > 0;
+                    var data = new EventDTО
+                    {
+                        Id = this.SelectedEvent.Id,
+                        DayOfWeek = this.DayOfWeek,
+                        StartsAt = this.ParseTimeString(this.StartsAt),
+                        EndsAt = this.ParseTimeString(this.EndsAt),
+                        HallId = this.Caller.SelectedItem.Id,
+                        LecturerId = this.SelectedLecturerItem.Id,
+                        Topic = this.Topic
+                    };
+                    var url = "http://localhost:38013/api/Events/Update";
+                    var response = await this.HttpService.PostAsJsonAsync<ResponseResult<EventDTО>>(url, data);
+                    var responseAsResultObject = (response as ResponseResult<EventDTО>);
 
-                if (isCreated)
+                    if (responseAsResultObject.Success)
+                    {
+                        this.SetNotificationMessage("Green", responseAsResultObject.Message);
+                        this.Caller.LoadWeeklySchedule();
+                    }
+                    else
+                    {
+                        this.SetNotificationMessage("Red", responseAsResultObject.Message);
+                    }
+                }
+                else
                 {
-                    this.SetNotificationMessage("Green", responseResult.Message);
+                    this.SetNotificationMessage("Blue", "Select a lecturer to update the event");
+                }
+            }
+            catch (Exception exc)
+            {
+                this.SetNotificationMessage("Red", exc.ToString());
+            }
+        }
+
+        private async void DeleteEvent()
+        {
+            try
+            {
+                var url = "http://localhost:38013/api/Events/Delete?eventToDeleteId=" + this.SelectedEvent.Id;
+                var response = await this.HttpService.GetAsync<ResponseResult<EventDTО>>(url);
+                var responseAsResultObject = (response as ResponseResult<EventDTО>);
+
+                if (responseAsResultObject.Success)
+                {
+                    this.SetNotificationMessage("Green", responseAsResultObject.Message);
                     this.Caller.LoadWeeklySchedule();
                 }
                 else
                 {
-                    this.SetNotificationMessage("Red", responseResult.Message);
+                    this.SetNotificationMessage("Red", responseAsResultObject.Message);
                 }
             }
             catch (Exception exc)
@@ -272,8 +329,8 @@
             var times = new List<string>();
 
             var start = 7 * 60;
-            var end = 22 * 60;  
-            for (int i = start; i < end; i+=segmentation)
+            var end = 22 * 60;
+            for (int i = start; i < end; i += segmentation)
             {
                 var hoursAsString = (i / 60).ToString().PadLeft(2, '0');
                 var minutesAsString = (i % 60).ToString().PadLeft(2, '0');

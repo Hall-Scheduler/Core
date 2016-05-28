@@ -46,14 +46,14 @@
         {
             if (this.ViewModel.WeeklySchedule[0].HallId > 0)
             {
-                var eventModel = ((ListViewItem)sender).Content as EventDTО; //Casting back to the binded EventDTM
+                var eventModel = ((ListViewItem)sender).Content as EventDTО;  //Casting back to the binded EventDTM
                 var eventId = eventModel.Id;
 
-                //var editEventView = new ScheduleEventView(eventModel, this.ViewModel);
+                var editEventView = new EditEventView(this.ViewModel, eventModel);
 
-                // Workaround to prevent focus switching between windows
-                //Action showAction = () => editEventView.Show();
-                //this.Dispatcher.BeginInvoke(showAction);
+                //Workaround to prevent focus switching between windows
+                Action showAction = () => editEventView.Show();
+                this.Dispatcher.BeginInvoke(showAction);
             }
         }
 
@@ -70,6 +70,7 @@
                 this.Dispatcher.BeginInvoke(showAction);
             }
         }
+
 
         private TimeSpan ParseTimeString(string timespan)
         {

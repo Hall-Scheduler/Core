@@ -42,7 +42,12 @@
             // Prepare response
             var message = string.Empty;
             var isSuccessful = false;
-            if (updateResult == API.Overlap)
+            if (updateResult > 0)
+            {
+                message = "Event successfully updated.";
+                isSuccessful = true;
+            }
+            else if (updateResult == API.Overlap)
             {
                 message = "Event overlap occured. Update failed.";
             }
@@ -50,10 +55,9 @@
             {
                 message = "Database validation error.";
             }
-            else if (updateResult > 0)
+            else if (updateResult == API.InvalidModel)
             {
-                message = "Event successfully updated.";
-                isSuccessful = true;
+                message = "Event start time cannot be after event end time";
             }
 
             return this.Ok(
@@ -88,6 +92,10 @@
             {
                 message = "Database validation error.";
             }
+            else if (creationResult == API.InvalidModel)
+            {
+                message = "Event start time cannot be after event end time";
+            }
             else if (creationResult > 0)
             {
                 message = "Event successfully added.";
@@ -99,6 +107,20 @@
                     isSuccessful,
                     message,
                     this.Mapper.Map<EventDTО>(eventDatabaseModel)));
+        }
+
+        [HttpGet]
+        [Route(API.Delete)]
+        public IHttpActionResult DeleteEvent(int eventToDeleteId)
+        {
+            var eventToDelete = this.EventsService.GetById(eventToDeleteId);
+            this.EventsService.Delete(eventToDelete);
+
+            return this.Ok(
+                new ResponseResultObject(
+                    true,
+                    "Event successfully deleted",
+                    this.Mapper.Map<EventDTО>(eventToDelete)));
         }
     }
 }

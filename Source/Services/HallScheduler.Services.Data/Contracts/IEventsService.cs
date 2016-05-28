@@ -14,5 +14,11 @@
         int Add(Event model);
 
         int Update(Event model);
+
+        void Delete(Event model);
+
+        void DeleteById(int eventId);
+
+        Event GetById(int eventId);
     }
 }

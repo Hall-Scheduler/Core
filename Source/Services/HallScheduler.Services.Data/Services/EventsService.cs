@@ -44,17 +44,25 @@
 
             // Try insert
             var canInsertEvent = scheduleTree.CanInsert(modelAsScheduleNode);
+            
             if (canInsertEvent)
             {
-                try
+                if (model.StartsAt.TotalMilliseconds < model.EndsAt.TotalMilliseconds)
                 {
-                    this.Events.Add(model);
-                    this.Events.SaveChanges();
-                    return model.Id;
+                    try
+                    {
+                        this.Events.Add(model);
+                        this.Events.SaveChanges();
+                        return model.Id;
+                    }
+                    catch (Exception)
+                    {
+                        return API.Conflict;
+                    }
                 }
-                catch (Exception)
+                else
                 {
-                    return API.Conflict;
+                    return API.InvalidModel;
                 }
             }
             else
@@ -80,21 +88,52 @@
             var canInsertUpdatedEvent = scheduleTree.CanInsert(modelAsScheduleNode);
             if(canInsertUpdatedEvent)
             {
-                try
+                if (model.StartsAt.TotalMilliseconds < model.EndsAt.TotalMilliseconds)
                 {
-                    this.Events.Update(model);
-                    this.Events.SaveChanges();
-                    return model.Id;
+                    try
+                    {
+                        var eventToUpdate = this.Events.All().FirstOrDefault(x => x.Id == model.Id);
+                        eventToUpdate.LecturerId = model.LecturerId;
+                        eventToUpdate.StartsAt = model.StartsAt;
+                        eventToUpdate.EndsAt = model.EndsAt;
+                        eventToUpdate.DayOfWeek = model.DayOfWeek;
+                        eventToUpdate.Topic = model.Topic;
+                        eventToUpdate.HallId = model.HallId;
+                        this.Events.Update(eventToUpdate);
+                        this.Events.SaveChanges();
+                        return model.Id;
+                    }
+                    catch (Exception)
+                    {
+                        return API.Conflict;
+                    }
                 }
-                catch (Exception)
+                else
                 {
-                    return API.Conflict;
+                    return API.InvalidModel;
                 }
             }
             else
             {
                 return API.Overlap;
             }
+        }
+
+        public void DeleteById(int eventId)
+        {
+            var eventToDelete = this.Events.All().FirstOrDefault(x => x.Id == eventId);
+            this.Delete(eventToDelete);
+        }
+
+        public void Delete(Event model)
+        {
+            this.Events.Delete(model);
+            this.Events.SaveChanges();
+        }
+
+        public Event GetById(int eventId)
+        {
+            return this.Events.All().FirstOrDefault(x => x.Id == eventId);
         }
     }
 }
