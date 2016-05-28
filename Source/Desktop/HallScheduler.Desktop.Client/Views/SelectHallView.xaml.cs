@@ -44,7 +44,7 @@
 
         protected void HandleListViewItemDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (this.ViewModel.WeeklySchedule[0].HallId > 0)
+            if (this.ViewModel.WeeklySchedule != null && this.ViewModel.WeeklySchedule[0].HallId > 0)
             {
                 var eventModel = ((ListViewItem)sender).Content as EventDTО;  //Casting back to the binded EventDTM
                 var eventId = eventModel.Id;
@@ -61,8 +61,6 @@
         {
             if (this.ViewModel.WeeklySchedule != null && this.ViewModel.WeeklySchedule[0].HallId > 0)
             {
-                var input = "07:15";
-                var inputAsTimespan = this.ParseTimeString(input);
                 var scheduleEventView = new ScheduleEventView(this.ViewModel);
 
                 // Workaround to prevent focus switching between windows
@@ -80,6 +78,18 @@
             var seconds = 0;
 
             return new TimeSpan(hours, minutes, seconds);
+        }
+
+        private void btnPresentationMode_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.ViewModel.WeeklySchedule != null && this.ViewModel.WeeklySchedule[0].HallId > 0)
+            {
+                var hallPresentationMode = new HallPresentationModeView(this.ViewModel.SelectedItem);
+
+                // Workaround to prevent focus switching between windows
+                Action showAction = () => hallPresentationMode.Show();
+                this.Dispatcher.BeginInvoke(showAction);
+            }
         }
     }
 }

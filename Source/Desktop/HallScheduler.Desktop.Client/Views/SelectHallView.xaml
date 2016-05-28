@@ -83,6 +83,11 @@
                     Width="660" Height="30" 
                     Margin="10" 
                     x:Name="btnScheduleEvent" Click="btnScheduleEvent_Click"/>
+            <Button Content="Presentation Mode" 
+                    FontSize="18"
+                    Width="660" Height="30" 
+                    Margin="10" 
+                    x:Name="btnPresentationMode" Click="btnPresentationMode_Click"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1">
