@@ -21,7 +21,7 @@ namespace HallScheduler.Desktop.Client.Views
     /// </summary>
     public partial class EditEventView : Window
     {
-        public EditEventView(SelectHallViewModel caller, EventDTО selectedEvent)
+        public EditEventView(SelectHallViewModel caller, EventDTO selectedEvent)
         {
             this.InitializeComponent();
             this.ViewModel = new EditEventViewModel(caller, selectedEvent);

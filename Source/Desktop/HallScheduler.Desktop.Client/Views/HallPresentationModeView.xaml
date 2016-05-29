@@ -7,29 +7,34 @@
         mc:Ignorable="d"
         Title="HallPresentationModeView" Height="900" Width="900">
     <Grid>
-        <Button Name="btnNextEvent"
-                Content="No events"
-                Width="400"
-                Height="200" Margin="420,610,60,60"></Button>
+        <TextBlock Name="txtNextEvent"
+                    Foreground="White"
+                    Background="Transparent"
+                    FontSize="24"
+                    Height="140"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="50"></TextBlock>
         <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Top"
+                    Margin="40">
             <TextBlock x:Name="txtCurrentTime" 
                        TextWrapping="Wrap"
                        FontSize="30"
-                       Text="Current time - 14:21:35" 
-                       Height="52" Width="318"/>
-            <Separator />
+                       Foreground="White"
+                       Height="52"
+                       HorizontalAlignment="Left"/>
+            <Separator Background="AntiqueWhite"/>
             <TextBlock x:Name="txtCurrentTopic" 
+                       Foreground="White"
                        TextWrapping="Wrap"
                        FontSize="40"
-                       Text="Topic - 'Machine learning with Azure'" 
-                       Height="70" Width="700"/>
+                       Height="70"/>
             <TextBlock x:Name="txtCurrentLecturer" 
                        TextWrapping="Wrap"
                        FontSize="40"
-                       Text="Lecturer - Frank Zane" 
-                       Height="70" Width="700"/>
+                       Foreground="White"
+                       Height="70"/>
         </StackPanel>
-        
     </Grid>
 </Window>

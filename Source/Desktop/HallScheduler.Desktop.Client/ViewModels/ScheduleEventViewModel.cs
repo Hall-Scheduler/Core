@@ -216,7 +216,7 @@
         {
             try
             {
-                var eventToAdd = new EventDTО
+                var eventToAdd = new EventDTO
                 {
                     DayOfWeek = this.DayOfWeek,
                     StartsAt = this.ParseTimeString(this.StartsAt),
@@ -226,8 +226,8 @@
                     Topic = this.Topic
                 };
                 var url = "http://localhost:38013/api/Events/Create";
-                var response = await this.HttpService.PostAsJsonAsync<ResponseResult<EventDTО>>(url, eventToAdd);
-                var responseResult = (response as ResponseResult<EventDTО>);
+                var response = await this.HttpService.PostAsJsonAsync<ResponseResult<EventDTO>>(url, eventToAdd);
+                var responseResult = (response as ResponseResult<EventDTO>);
                 var isCreated = responseResult.Data.Id > 0;
 
                 if (isCreated)

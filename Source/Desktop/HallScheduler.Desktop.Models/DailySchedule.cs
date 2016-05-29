@@ -11,7 +11,7 @@
     {
         public int HallId { get; set; }
 
-        private EventDTО selectedItem;
+        private EventDTO selectedItem;
 
         public DailySchedule(bool isSchedulingEnabled, DayOfWeek dayOfWeek, int hallId) 
             : this(dayOfWeek, hallId)
@@ -34,16 +34,16 @@
 
             this.HallId = hallId;
             this.DayOfWeek = dayOfWeek;
-            this.Schedule = new List<EventDTО>();
+            this.Schedule = new List<EventDTO>();
         }
 
         public DayOfWeek DayOfWeek { get; set; }
 
-        public List<EventDTО> Schedule { get; set; }
+        public List<EventDTO> Schedule { get; set; }
 
         public bool IsSchedulingEnabled { get; set; }
 
-        public EventDTО SelectedItem
+        public EventDTO SelectedItem
         {
             get
             {

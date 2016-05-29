@@ -24,7 +24,7 @@
         [Required]
         public string Room { get; set; }
 
-        public virtual ICollection<EventDTО> Schedule { get; set; }
+        public virtual ICollection<EventDTO> Schedule { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

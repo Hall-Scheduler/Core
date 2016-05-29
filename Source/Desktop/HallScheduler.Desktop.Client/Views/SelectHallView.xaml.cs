@@ -46,7 +46,7 @@
         {
             if (this.ViewModel.WeeklySchedule != null && this.ViewModel.WeeklySchedule[0].HallId > 0)
             {
-                var eventModel = ((ListViewItem)sender).Content as EventDTО;  //Casting back to the binded EventDTM
+                var eventModel = ((ListViewItem)sender).Content as EventDTO;  //Casting back to the binded EventDTM
                 var eventId = eventModel.Id;
 
                 var editEventView = new EditEventView(this.ViewModel, eventModel);
@@ -69,7 +69,6 @@
             }
         }
 
-
         private TimeSpan ParseTimeString(string timespan)
         {
             var elements = timespan.Split(':');
@@ -84,7 +83,7 @@
         {
             if (this.ViewModel.WeeklySchedule != null && this.ViewModel.WeeklySchedule[0].HallId > 0)
             {
-                var hallPresentationMode = new HallPresentationModeView(this.ViewModel.SelectedItem);
+                var hallPresentationMode = new HallPresentationModeView(this.ViewModel);
 
                 // Workaround to prevent focus switching between windows
                 Action showAction = () => hallPresentationMode.Show();

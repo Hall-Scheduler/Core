@@ -1,5 +1,6 @@
 ﻿namespace HallScheduler.Data.Contexts
 {
+    using System;
     using System.Data.Entity;
 
     using Contracts;
@@ -8,7 +9,7 @@
 
     public class HallSchedulerDbContext : IdentityDbContext<User>, IHallSchedulerDbContext
     {
-        public HallSchedulerDbContext() 
+        public HallSchedulerDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
@@ -19,9 +20,26 @@
 
         public IDbSet<EventLog> EventLogs { get; set; }
 
+        public IDbSet<EventSubscription> EventSubscriptions { get; set; }
+
         public static HallSchedulerDbContext Create()
         {
             return new HallSchedulerDbContext();
+        }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<EventSubscription>()
+                .HasRequired(x => x.Lecturer)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<EventSubscription>()
+                .HasRequired(x => x.Event)
+                .WithMany()
+                .WillCascadeOnDelete(false);
         }
     }
 }

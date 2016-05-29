@@ -10,7 +10,6 @@
     <Grid Height="642" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="200"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
@@ -28,7 +27,8 @@
             	Height="30" 
             	FontSize="18"
             	ResultsHeight="200" ResultsWidth="420"
-            	ExplicitlyIncludeColumns="True" Margin="218,0,214,0">
+            	ExplicitlyIncludeColumns="True"
+                Width="660">
                 <autocomplete:Intellibox.Columns>
                     <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Type}" Header="Type" Width="100"/>
                     <autocomplete:IntelliboxColumn DisplayMemberBinding="{Binding Name}" Header="Name" Width="90"/>
@@ -70,7 +70,13 @@
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
-                                    <GridViewColumn Header="Topic" Width="330" DisplayMemberBinding="{Binding Topic}" />
+                                    <GridViewColumn Header="Topic" Width="330" >
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Topic}" Foreground="{Binding Color}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                     <GridViewColumn Header="Lecturer" Width="150" DisplayMemberBinding="{Binding LecturerName}" />
                                 </GridView>
                             </ListView.View>
@@ -82,27 +88,126 @@
                     FontSize="18"
                     Width="660" Height="30" 
                     Margin="10" 
-                    x:Name="btnScheduleEvent" Click="btnScheduleEvent_Click"/>
+                    x:Name="btnScheduleEvent" Click="btnScheduleEvent_Click"
+                    Foreground="White">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="BlueViolet"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Orchid"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Button Content="Presentation Mode" 
                     FontSize="18"
                     Width="660" Height="30" 
                     Margin="10" 
-                    x:Name="btnPresentationMode" Click="btnPresentationMode_Click"/>
-        </StackPanel>
+                    x:Name="btnPresentationMode" Click="btnPresentationMode_Click"
+                    Foreground="White">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="BlueViolet"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Orchid"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="Refresh" 
+                    FontSize="18"
+                    Width="660" Height="30" 
+                    Margin="10" 
+                    x:Name="btnRefresh"
+                    Command="{Binding RefreshScheduleCommand}"
+                    Foreground="White">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="BlueViolet"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Orchid"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Width="660" Height="30" 
+                    Content="Logout" 
+                    FontSize="18" 
+                    Name="btnLogout" 
+                    Margin="10" 
+                    Click="btnLogout_Click" 
+                    Foreground="White">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="OrangeRed"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Background" Value="OrangeRed"/>
+                                <Setter Property="Opacity" Value="0.7"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
 
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <Label x:Name="label" Content="User details:" FontSize="24" 
-                   HorizontalAlignment="Left" 
-                   VerticalAlignment="Top" 
-                   Height="50" 
-                   Width="200"/>
-            <TextBlock Width="200" Height="32" FontSize="12" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayFullName}" ></TextBlock>
-            <TextBlock Width="200" Height="32" FontSize="12" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayEmail}" ></TextBlock>
-            <TextBlock Width="200" Height="32" FontSize="12" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayAcademicRank}" ></TextBlock>
-            <TextBlock Width="200" Height="32" FontSize="12" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayFaculty}" ></TextBlock>
+            <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+                <Label x:Name="label" Content="Current user details:" 
+                       FontSize="16" FontWeight="Bold"
+                       HorizontalAlignment="Left" 
+                       Height="30" 
+                       Width="660"/>
+                <Separator></Separator>
+                <TextBlock Width="660" Height="32" FontSize="16" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayFullName}" ></TextBlock>
+                <TextBlock Width="660" Height="32" FontSize="16" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayEmail}" ></TextBlock>
+                <TextBlock Width="660" Height="32" FontSize="16" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayAcademicRank}" ></TextBlock>
+                <TextBlock Width="660" Height="32" FontSize="16" HorizontalAlignment="Left" Text="{Binding IdentityService.UserIdentity.DisplayFaculty}" ></TextBlock>
+            </StackPanel>
         </StackPanel>
-
-        <Button Grid.Row="0" Grid.Column="1" Width="180" Height="40" HorizontalAlignment="Left"
-                Content="Logout" FontSize="24" Name="btnLogout" Click="btnLogout_Click" />
     </Grid>
 </Window>

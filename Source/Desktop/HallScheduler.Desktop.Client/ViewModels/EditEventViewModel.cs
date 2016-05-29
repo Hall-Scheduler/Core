@@ -21,7 +21,7 @@
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public EditEventViewModel(SelectHallViewModel caller, EventDTО selectedEvent)
+        public EditEventViewModel(SelectHallViewModel caller, EventDTO selectedEvent)
         {
             this.Caller = caller;
             this.HttpService = NinjectHelper.Kernel.Get<IHttpService>();
@@ -43,8 +43,8 @@
 
         public IIdentityService IdentityService { get; set; }
 
-        private EventDTО _selectedEvent;
-        public EventDTО SelectedEvent
+        private EventDTO _selectedEvent;
+        public EventDTO SelectedEvent
         {
             get
             {
@@ -244,7 +244,7 @@
             {
                 if (this.SelectedLecturerItem != null)
                 {
-                    var data = new EventDTО
+                    var data = new EventDTO
                     {
                         Id = this.SelectedEvent.Id,
                         DayOfWeek = this.DayOfWeek,
@@ -255,8 +255,8 @@
                         Topic = this.Topic
                     };
                     var url = "http://localhost:38013/api/Events/Update";
-                    var response = await this.HttpService.PostAsJsonAsync<ResponseResult<EventDTО>>(url, data);
-                    var responseAsResultObject = (response as ResponseResult<EventDTО>);
+                    var response = await this.HttpService.PostAsJsonAsync<ResponseResult<EventDTO>>(url, data);
+                    var responseAsResultObject = (response as ResponseResult<EventDTO>);
 
                     if (responseAsResultObject.Success)
                     {
@@ -284,8 +284,8 @@
             try
             {
                 var url = "http://localhost:38013/api/Events/Delete?eventToDeleteId=" + this.SelectedEvent.Id;
-                var response = await this.HttpService.GetAsync<ResponseResult<EventDTО>>(url);
-                var responseAsResultObject = (response as ResponseResult<EventDTО>);
+                var response = await this.HttpService.GetAsync<ResponseResult<EventDTO>>(url);
+                var responseAsResultObject = (response as ResponseResult<EventDTO>);
 
                 if (responseAsResultObject.Success)
                 {

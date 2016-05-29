@@ -9,7 +9,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Runtime.Serialization;
 
-    public class EventDTО : IEvent, IMapFrom<Event>, IMapTo<Event>, IHaveCustomMappings
+    public class EventDTO : IEvent, IMapFrom<Event>, IMapTo<Event>, IHaveCustomMappings
     {
         [Required]
         public int Id { get; set; }
@@ -42,6 +42,8 @@
             }
         }
 
+        public string Color { get; set; } = "Green";
+
         [Required]
         [MinLength(
             ValidationConstants.EventTopicMinLength, 
@@ -53,7 +55,7 @@
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
-            configuration.CreateMap<Event, EventDTО>()
+            configuration.CreateMap<Event, EventDTO>()
                 .ForMember(dest => dest.DayOfWeek, opts => opts.MapFrom(src => src.DayOfWeek.ToString()))
                 .ForMember(dest => dest.EndsAt, opts => opts.MapFrom(src => src.EndsAt))
                 .ForMember(dest => dest.HallName, opts => opts.MapFrom(src => src.Hall.Block.ToString() + src.Hall.Stage.ToString() + src.Hall.Room.ToString()))

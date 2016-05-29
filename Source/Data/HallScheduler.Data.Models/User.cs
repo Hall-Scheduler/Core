@@ -16,7 +16,7 @@
         public User()
             : base()
         {
-            this.Schedule = new HashSet<Event>();
+            this.EventSubscriptions = new HashSet<EventSubscription>();
         }
 
         [Required]
@@ -37,7 +37,7 @@
         [EnumDataType(typeof(FacultyType), ErrorMessage = ValidationConstants.FacultyTypeErrorMessage)]
         public FacultyType Faculty { get; set; }
 
-        public virtual ICollection<Event> Schedule { get; set; }
+        public virtual ICollection<EventSubscription> EventSubscriptions { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {

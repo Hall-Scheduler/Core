@@ -12,15 +12,15 @@
     {
         public int Id { get; set; }
 
-        public List<EventDTО> Monday { get; set; }
+        public List<EventDTO> Monday { get; set; }
 
-        public List<EventDTО> Tuesday { get; set; }
+        public List<EventDTO> Tuesday { get; set; }
 
-        public List<EventDTО> Wednesday { get; set; }
+        public List<EventDTO> Wednesday { get; set; }
 
-        public List<EventDTО> Thursday { get; set; }
+        public List<EventDTO> Thursday { get; set; }
 
-        public List<EventDTО> Friday { get; set; }
+        public List<EventDTO> Friday { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

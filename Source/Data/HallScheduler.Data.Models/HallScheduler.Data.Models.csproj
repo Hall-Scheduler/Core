@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Event.cs" />
+    <Compile Include="EventSubscription.cs" />
     <Compile Include="Hall.cs" />
     <Compile Include="EventLog.cs" />
     <Compile Include="User.cs" />

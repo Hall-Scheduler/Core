@@ -21,7 +21,7 @@
 
         public void Execute(object parameter)
         {
-            this.Action();
+            this.Action?.Invoke();
         }
     }
 }

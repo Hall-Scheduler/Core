@@ -12,6 +12,8 @@
 
         IDbSet<Event> Events { get; set; }
 
+        IDbSet<EventSubscription> EventSubscriptions { get; set; }
+
         IDbSet<EventLog> EventLogs { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;

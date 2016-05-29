@@ -50,6 +50,19 @@
             }
         }
 
+        public ICommand RefreshScheduleCommand
+        {
+            get
+            {
+                if(this.SelectedItem != null && this.SelectedItem.Id > 0)
+                {
+                    return new ActionCommand(this.LoadWeeklySchedule);
+                }
+
+                return new ActionCommand(null);
+            }
+        }
+
         public IHttpService HttpService { get; set; }
 
         public IIdentityService IdentityService { get; set; }
@@ -81,8 +94,8 @@
             }
         }
 
-        private EventDTО selectedEvent;
-        public EventDTО SelectedEvent
+        private EventDTO selectedEvent;
+        public EventDTO SelectedEvent
         {
             get
             {
@@ -144,7 +157,7 @@
 
         public void ParseSchedule(HallScheduleDTO schedule)
         {
-            Comparison<EventDTО> eventsComparer = (x, y) => x.StartsAt.TotalMilliseconds.CompareTo(y.StartsAt.TotalMilliseconds);
+            Comparison<EventDTO> eventsComparer = (x, y) => x.StartsAt.TotalMilliseconds.CompareTo(y.StartsAt.TotalMilliseconds);
 
             schedule.Monday.Sort(eventsComparer);
             schedule.Tuesday.Sort(eventsComparer);

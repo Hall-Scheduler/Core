@@ -28,7 +28,7 @@
 
         [HttpPost]
         [Route(API.Update)]
-        public IHttpActionResult UpdateEvent(EventDTО model)
+        public IHttpActionResult UpdateEvent(EventDTO model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -69,7 +69,7 @@
 
         [HttpPost]
         [Route(API.Create)]
-        public IHttpActionResult CreateEvent(EventDTО model)
+        public IHttpActionResult CreateEvent(EventDTO model)
         {
             // Validate model
             if (!this.ModelState.IsValid)
@@ -106,7 +106,7 @@
                 new ResponseResultObject(
                     isSuccessful,
                     message,
-                    this.Mapper.Map<EventDTО>(eventDatabaseModel)));
+                    this.Mapper.Map<EventDTO>(eventDatabaseModel)));
         }
 
         [HttpGet]
@@ -120,7 +120,7 @@
                 new ResponseResultObject(
                     true,
                     "Event successfully deleted",
-                    this.Mapper.Map<EventDTО>(eventToDelete)));
+                    this.Mapper.Map<EventDTO>(eventToDelete)));
         }
     }
 }
