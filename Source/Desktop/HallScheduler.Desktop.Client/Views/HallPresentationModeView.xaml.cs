@@ -86,11 +86,8 @@
 
         private void EventsTimer_Tick(object sender, EventArgs e)
         {
-            //var currentDay = DateTime.Now.DayOfWeek;
-            var currentDay = DayOfWeek.Monday;
-
+            var currentDay = DateTime.Now.DayOfWeek;
             var currentTimeTotalMilliseconds = DateTime.Now.TimeOfDay.TotalMilliseconds;
-
             var schedule = this.ViewModel.WeeklySchedule[this.GetDayOfWeekIndex(currentDay)];
 
             for (int i = 0; i < schedule.Schedule.Count; i++)

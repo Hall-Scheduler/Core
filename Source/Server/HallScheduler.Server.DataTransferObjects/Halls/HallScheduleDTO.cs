@@ -22,6 +22,10 @@
 
         public List<EventDTO> Friday { get; set; }
 
+        public List<EventDTO> Saturday { get; set; }
+
+        public List<EventDTO> Sunday { get; set; }
+
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Hall, HallScheduleDTO>()
@@ -30,7 +34,9 @@
                 .ForMember(dest => dest.Tuesday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Tuesday).ToList()))
                 .ForMember(dest => dest.Wednesday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Wednesday).ToList()))
                 .ForMember(dest => dest.Thursday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Thursday).ToList()))
-                .ForMember(dest => dest.Friday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Friday).ToList()));
+                .ForMember(dest => dest.Friday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Friday).ToList()))
+                .ForMember(dest => dest.Saturday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Saturday).ToList()))
+                .ForMember(dest => dest.Sunday, opts => opts.MapFrom(src => src.Schedule.Where(x => x.DayOfWeek == DayOfWeek.Sunday).ToList()));
         }
     }
 }

@@ -170,6 +170,8 @@
             this.WeeklySchedule[2].Schedule = schedule.Wednesday;
             this.WeeklySchedule[3].Schedule = schedule.Thursday;
             this.WeeklySchedule[4].Schedule = schedule.Friday;
+            this.WeeklySchedule[5].Schedule = schedule.Saturday;
+            this.WeeklySchedule[6].Schedule = schedule.Sunday;
 
             this.NotifyPropertyChanged(PropertyHelper.GetPropertyName(() => this.WeeklySchedule));
         }
@@ -182,7 +184,9 @@
                     new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Tuesday, hallId) { DayOfWeek = DayOfWeek.Tuesday },
                     new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Wednesday, hallId) { DayOfWeek = DayOfWeek.Wednesday },
                     new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Thursday, hallId) { DayOfWeek = DayOfWeek.Thursday },
-                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Friday, hallId) { DayOfWeek = DayOfWeek.Friday }
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Friday, hallId) { DayOfWeek = DayOfWeek.Friday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Friday, hallId) { DayOfWeek = DayOfWeek.Saturday },
+                    new DailySchedule(this.isSchedulingEnabled, DayOfWeek.Friday, hallId) { DayOfWeek = DayOfWeek.Sunday }
                 };
         }
     }
