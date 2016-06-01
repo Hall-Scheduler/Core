@@ -36,22 +36,30 @@
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            var response = await this.Login();
-            if (response == null)
+            try
             {
-                this.DisplayErrorMessage("Invalid credentials. Please try again.");
-                return;
-            }
+                var response = await this.Login();
+                if (response == null)
+                {
+                    this.DisplayErrorMessage("Invalid credentials. Please try again.");
+                    return;
+                }
 
-            var identityLoaded = await this.LoadIdentity(response);
-            if (!identityLoaded)
+                var identityLoaded = await this.LoadIdentity(response);
+                if (!identityLoaded)
+                {
+                    this.DisplayErrorMessage("Identity load failure. There is something wrong with our service.");
+                    return;
+                }
+
+                var nextPage = new SelectHallView();
+                nextPage.Show();
+
+            }
+            catch
             {
-                this.DisplayErrorMessage("Identity load failure. There is something wrong with our service.");
-                return;
+                this.DisplayErrorMessage("Internal server error.");
             }
-
-            var nextPage = new SelectHallView();
-            nextPage.Show();
 
             this.Close();
         }

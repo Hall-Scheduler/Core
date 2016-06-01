@@ -20,6 +20,7 @@
 
         [HttpPost]
         [Route(API.Update)]
+        //[Authorize(Roles = "Administrator, Moderator")]
         public IHttpActionResult UpdateEvent(EventDTO model)
         {
             if (!this.ModelState.IsValid)
@@ -61,6 +62,7 @@
 
         [HttpPost]
         [Route(API.Create)]
+        //[Authorize(Roles = "Administrator, Moderator")]
         public IHttpActionResult CreateEvent(EventDTO model)
         {
             // Validate model
@@ -103,7 +105,7 @@
 
         [HttpGet]
         [Route(API.Delete)]
-        [Authorize(Roles = "Administrator, Moderator")]
+        //[Authorize(Roles = "Administrator, Moderator")]
         public IHttpActionResult DeleteEvent(int eventToDeleteId)
         {
             var eventToDelete = this.EventsService.GetById(eventToDeleteId);

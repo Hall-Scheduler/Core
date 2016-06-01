@@ -124,7 +124,7 @@
                 if (checkedEvent.StartsAt.TotalMilliseconds > currentTimeTotalMilliseconds)
                 {
                     // We have a next event
-                    this.txtNextEvent.Text = $"Comming next{Environment.NewLine}{checkedEvent.Topic}{Environment.NewLine}Lecturer - {checkedEvent.LecturerName}{Environment.NewLine}";
+                    this.txtNextEvent.Text = $"Comming next in {checkedEvent.StartsAt.ToString()}{Environment.NewLine}{checkedEvent.Topic}{Environment.NewLine}Lecturer - {checkedEvent.LecturerName}{Environment.NewLine}";
                     break;
                 }
                 else

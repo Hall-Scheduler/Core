@@ -3,9 +3,10 @@
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     using Common.Constants;
     using Common.Contracts;
-    using System.Collections.Generic;
+
     public class Event : IEvent
     {
         [Key]

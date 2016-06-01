@@ -26,7 +26,6 @@
         private IRolesService Roles { get; set; }
 
         [HttpGet]
-        [Authorize]
         public IHttpActionResult Get()
         {
             var userId = this.User.Identity.GetUserId();

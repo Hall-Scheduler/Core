@@ -40,16 +40,6 @@
                 .HasRequired(x => x.Event)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Hall>()
-                .HasRequired(x => x.Schedule)
-                .WithMany()
-                .WillCascadeOnDelete(true);
-
-            modelBuilder.Entity<Event>()
-                .HasRequired(x => x.Hall)
-                .WithMany()
-                .WillCascadeOnDelete(false);
         }
     }
 }
