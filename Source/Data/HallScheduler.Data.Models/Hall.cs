@@ -1,9 +1,10 @@
 ﻿namespace HallScheduler.Data.Models
 {
-    using Common.Constants;
-    using Common.Enumerations;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using Common.Constants;
+    using Common.Enumerations;
 
     public class Hall
     {

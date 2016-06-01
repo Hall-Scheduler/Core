@@ -1,8 +1,9 @@
 namespace HallScheduler.Data.Migrations
 {
+    using System.Data.Entity.Migrations;
+
     using Contexts;
     using Seed;
-    using System.Data.Entity.Migrations;
 
     public sealed class Configuration : DbMigrationsConfiguration<HallSchedulerDbContext>
     {

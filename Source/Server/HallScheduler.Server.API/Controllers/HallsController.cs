@@ -1,13 +1,14 @@
 ﻿namespace HallScheduler.Server.API.Controllers
 {
+    using System.Data.Entity;
+    using System.Threading.Tasks;
+    using System.Web.Http;
+
     using Common.Constants;
     using DataTransferObjects.Halls;
     using Infrastructure;
     using Infrastructure.Mapping;
     using Services.Data.Contracts;
-    using System.Data.Entity;
-    using System.Threading.Tasks;
-    using System.Web.Http;
 
     [RoutePrefix(API.Halls)]
     public class HallsController : BaseController

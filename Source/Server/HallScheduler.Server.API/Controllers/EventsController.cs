@@ -1,20 +1,12 @@
 ﻿namespace HallScheduler.Server.API.Controllers
 {
-    using Services.Data.Contracts;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Net;
-    using System.Net.Http;
     using System.Web.Http;
+
     using Common.Constants;
-    using System.Threading.Tasks;
-    using DataTransferObjects.Events;
     using Data.Models;
+    using DataTransferObjects.Events;
     using Infrastructure;
-    using HallScheduler.Common.Constants;
-    using Data.Common;
-    using Data.Common.Contracts;
+    using Services.Data.Contracts;
 
     [RoutePrefix(API.Events)]
     public class EventsController : BaseController
@@ -111,6 +103,7 @@
 
         [HttpGet]
         [Route(API.Delete)]
+        [Authorize(Roles = "Administrator, Moderator")]
         public IHttpActionResult DeleteEvent(int eventToDeleteId)
         {
             var eventToDelete = this.EventsService.GetById(eventToDeleteId);

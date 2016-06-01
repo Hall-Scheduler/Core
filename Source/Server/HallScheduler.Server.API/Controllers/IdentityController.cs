@@ -3,17 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Net;
-    using System.Net.Http;
     using System.Web.Http;
+
     using Common.Constants;
-    using System.Threading.Tasks;
+    using Data.Common.Enumerations;
+    using DataTransferObjects.Account;
+    using Infrastructure;
     using Microsoft.AspNet.Identity;
     using Services.Data.Contracts;
-    using DataTransferObjects.Account;
-    using Data.Common.Enumerations;
-    using Data.Contexts;
-    using Infrastructure;
+
     [RoutePrefix(API.Identity)]
     public class IdentityController : BaseController
     {

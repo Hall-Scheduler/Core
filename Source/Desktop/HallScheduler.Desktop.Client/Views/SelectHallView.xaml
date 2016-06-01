@@ -16,7 +16,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="1">
-            <TextBlock Text="Search" FontFamily="Segoe UI" FontSize="20" FontStretch="Expanded"
+            <TextBlock Text="Search Hall" FontFamily="Segoe UI" FontSize="20" FontStretch="Expanded"
         		Height="27" HorizontalAlignment="Center"/>
             <autocomplete:Intellibox
             	x:Name="autocompleteTextBox" SelectAllOnFocus="True" 
@@ -26,7 +26,7 @@
             	SelectedValue="{Binding SelectedValue}"
             	Height="30" 
             	FontSize="18"
-            	ResultsHeight="200" ResultsWidth="420"
+            	ResultsHeight="200" ResultsWidth="660"
             	ExplicitlyIncludeColumns="True"
                 Width="660">
                 <autocomplete:Intellibox.Columns>

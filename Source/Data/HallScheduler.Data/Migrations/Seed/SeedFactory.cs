@@ -1,11 +1,12 @@
 ﻿namespace HallScheduler.Data.Migrations.Seed
 {
-    using HallScheduler.Common.Constants;
-    using Seeders;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
+
+    using HallScheduler.Common.Constants;
+    using Seeders;
 
     public class SeedFactory
     {
